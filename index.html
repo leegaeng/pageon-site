@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050505">
+<title>PAGE:ON | Creative Writer Crew</title>
+<meta name="description" content="PAGE:ON은 한 장의 페이지처럼 이야기를 열고, 세상을 켜는 콘텐츠 작가 크루입니다.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PAGE:ON">
+<meta property="og:title" content="PAGE:ON | Creative Writer Crew">
+<meta property="og:description" content="이야기를 열고, 세상을 켜다. PAGE:ON Creative Writer Crew.">
+<meta property="og:image" content="assets/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PAGE:ON Creative Writer Crew">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PAGE:ON | Creative Writer Crew">
+<meta name="twitter:description" content="이야기를 열고, 세상을 켜다. PAGE:ON Creative Writer Crew.">
+<meta name="twitter:image" content="assets/og-preview.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+:root{
+  --bg:#050505;
+  --bg-soft:#0a0a0a;
+  --text:#f7f1e7;
+  --paper:#fffaf1;
+  --orange:#ff6416;
+  --orange-soft:#ff8a45;
+  --line:rgba(247,241,231,.18);
+  --max:1280px;
+  --light-x:18%;
+  --light-y:22%;
+  --trail-x:12%;
+  --trail-y:28%;
+  --light-alpha:.24;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Pretendard,"SUIT Variable","Noto Sans KR","Apple SD Gothic Neo",Inter,Arial,sans-serif;
+  line-height:1.58;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  word-break:keep-all;overflow-wrap:break-word;
+}
+a{color:inherit;text-decoration:none} button{font:inherit;color:inherit}
+.scroll-light,.scroll-trail{position:fixed;pointer-events:none;z-index:0;border-radius:50%;will-change:left,top,opacity,transform;transform:translate(-50%,-50%);mix-blend-mode:screen}
+.scroll-light{left:var(--light-x);top:var(--light-y);width:min(72vw,820px);aspect-ratio:1;background:radial-gradient(circle,rgba(255,100,22,var(--light-alpha)) 0%,rgba(255,100,22,.12) 27%,rgba(255,100,22,.035) 50%,transparent 72%);filter:blur(16px)}
+.scroll-trail{left:var(--trail-x);top:var(--trail-y);width:min(48vw,520px);aspect-ratio:1;background:radial-gradient(circle,rgba(255,143,76,.14) 0%,rgba(255,100,22,.055) 42%,transparent 72%);filter:blur(24px)}
+.site{position:relative;z-index:1}
+header{
+  position:fixed;inset:0 0 auto;z-index:40;
+  background:linear-gradient(to bottom,rgba(5,5,5,0),rgba(5,5,5,0));
+  backdrop-filter:blur(0);
+  transition:background .38s ease,backdrop-filter .38s ease,border-color .38s ease;
+  border-bottom:1px solid transparent;
+}
+header.is-past-hero{
+  background:linear-gradient(to bottom,rgba(5,5,5,.96),rgba(5,5,5,.72) 74%,rgba(5,5,5,.18));
+  backdrop-filter:blur(10px);
+  border-bottom-color:rgba(247,241,231,.05);
+}
+.nav{width:min(100%,var(--max));height:82px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:flex;align-items:center;min-width:0;opacity:0;visibility:hidden;transform:translateY(-7px);pointer-events:none;transition:opacity .32s ease,transform .32s ease,visibility .32s}
+header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.brand img{display:block;width:146px;height:31px;object-fit:contain;object-position:left center}
+.brand-fallback{font-size:23px;font-weight:950;letter-spacing:-.055em;color:var(--paper);line-height:1}.brand-fallback .on{color:var(--orange)}
+.menu{display:flex;align-items:center;gap:28px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.menu a{padding:8px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.menu a:hover,.menu a:focus-visible{color:var(--orange);border-color:var(--orange);outline:none}
+
+/* Hero: PAGE:ON remains fixed while the message renders automatically. */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:grid;place-items:center;border:0}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--hero-glow-x,72%) var(--hero-glow-y,42%),rgba(255,100,22,.25),rgba(255,100,22,.08) 23%,transparent 53%);opacity:.95;pointer-events:none;transition:background-position 1.2s ease}
+.hero-inner{width:min(100%,var(--max));min-height:100vh;padding:132px 28px 72px;display:grid;align-content:center;position:relative}
+.hero-brand{position:relative;z-index:2;margin-bottom:74px}
+.hero-wordmark{margin:0;font-size:clamp(82px,15vw,190px);font-weight:950;letter-spacing:-.078em;line-height:.82;color:var(--paper);white-space:nowrap}
+.hero-wordmark .colon,.hero-wordmark .on{color:var(--orange)}
+.hero-subbrand{margin:0 0 24px;font-size:12px;font-weight:850;letter-spacing:.21em;color:var(--paper);text-transform:uppercase;opacity:.86}
+.hero-message{position:relative;z-index:2;min-height:228px;max-width:1080px;perspective:1200px}
+.hero-phrase{position:absolute;inset:0 auto auto 0;width:100%;opacity:0;pointer-events:none;transform-origin:50% 0%;transform:translateY(18px) rotateX(7deg);transform-style:preserve-3d;will-change:transform,opacity;transition:opacity .68s ease,transform 1.05s cubic-bezier(.22,.75,.16,1)}
+.hero-phrase.is-active{opacity:1;pointer-events:auto;transform:translateY(0) rotateX(0deg)}
+.hero-phrase.is-leaving{opacity:0;transform:translateY(-16px) rotateX(-9deg);transition:opacity .62s ease,transform 1.02s cubic-bezier(.4,0,.2,1)}
+.hero-line{display:block;overflow:visible;padding-bottom:.11em}
+.hero-line>span{display:block;font-size:clamp(42px,6.2vw,88px);font-weight:900;letter-spacing:-.052em;line-height:1.04;color:var(--paper);transform:translateY(14px);opacity:0;transition:transform .82s cubic-bezier(.16,1,.3,1),opacity .58s ease}
+.hero-phrase.is-active .hero-line>span{transform:translateY(0);opacity:1}
+.hero-phrase.is-leaving .hero-line>span{transform:translateY(-8px);opacity:0;transition:transform .64s cubic-bezier(.4,0,.2,1),opacity .5s ease}
+.hero-line:nth-child(2)>span{transition-delay:.14s}
+.hero-phrase.is-leaving .hero-line:nth-child(2)>span{transition-delay:.03s}
+.hero-accent{color:var(--orange)}
+.hero-cycle-label{position:absolute;right:28px;bottom:36px;font-size:12px;font-weight:850;letter-spacing:.16em;color:var(--paper)}
+.hero-cycle-dots{position:absolute;left:28px;bottom:40px;display:flex;align-items:center;gap:8px}
+.hero-cycle-dots i{display:block;width:30px;height:3px;background:rgba(247,241,231,.24);transition:width .32s ease,background .25s ease}
+.hero-cycle-dots i.on{width:62px;background:var(--orange)}
+.section{padding:118px 28px 120px;border-top:1px solid rgba(247,241,231,.08);scroll-margin-top:76px}
+.inner{width:min(100%,var(--max));margin:auto}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
+.section-title{font-size:clamp(42px,6.2vw,88px);font-weight:900;line-height:1.02;letter-spacing:-.052em;margin:0;color:var(--paper)}
+.section-intro{font-size:clamp(18px,1.75vw,24px);font-weight:520;line-height:1.65;color:var(--paper);max-width:760px;margin:28px 0 0}
+
+/* About is intentionally compact so it does not repeat the hero. */
+#about{padding-top:88px;padding-bottom:104px}
+.about-grid{display:grid;grid-template-columns:.42fr 1.58fr;gap:72px;align-items:start}
+.about-mark{font-size:13px;font-weight:720;letter-spacing:.15em;color:var(--orange);text-transform:uppercase;padding-top:12px}
+.about-copy{max-width:940px;border-left:1px solid rgba(247,241,231,.18);padding-left:44px}
+.about-lead{font-size:clamp(38px,4.9vw,68px);font-weight:900;line-height:1.05;letter-spacing:-.05em;margin:0 0 28px;color:var(--paper)}
+.about-lead .about-key{color:var(--orange)}
+.about-copy p{margin:0;max-width:850px;font-size:clamp(19px,1.65vw,24px);font-weight:500;line-height:1.7;color:var(--paper);letter-spacing:-.018em}
+.about-copy strong{font-weight:760;color:var(--paper)}
+
+.about-flow{margin-top:34px;padding-top:24px;border-top:1px solid rgba(247,241,231,.16);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.about-flow-label{font-size:12px;font-weight:720;letter-spacing:.12em;color:var(--orange);text-transform:uppercase;margin-right:8px}
+.about-flow-step{font-size:clamp(17px,1.5vw,22px);font-weight:700;letter-spacing:-.025em;color:var(--paper);white-space:nowrap}
+.about-flow-arrow{font-size:18px;font-weight:450;color:var(--orange);opacity:.92}
+.about-flow-note{width:100%;margin-top:5px!important;font-size:14px!important;font-weight:450!important;line-height:1.55!important;color:var(--paper)!important;opacity:.88}
+
+/* Works */
+.works-head{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:42px}
+.works-head .side-note{max-width:310px;font-size:14px;font-weight:500;color:var(--paper);text-align:right}
+.work-stage{position:relative;overflow:hidden;background:#090909;border:1px solid var(--line);min-height:550px}
+.work-track{display:flex;transition:transform .72s cubic-bezier(.22,.7,.2,1);will-change:transform}
+.work-slide{min-width:100%;position:relative;aspect-ratio:16/8.8;overflow:hidden;background:#0a0a0a}
+.work-slide>a.media{position:absolute;inset:0;display:block;z-index:1;background:#0a0a0a center/cover no-repeat}
+.work-slide img{width:100%;height:100%;display:block;object-fit:cover;filter:brightness(.72) saturate(.94);transform:scale(1.002);transition:transform .7s ease,filter .4s ease,opacity .25s ease;opacity:0}.work-slide img.is-loaded{opacity:1}
+.work-slide:hover img{transform:scale(1.022);filter:brightness(.79) saturate(1)}
+.work-meta{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:84px 48px 40px;background:linear-gradient(transparent,rgba(0,0,0,.94));display:grid;grid-template-columns:1fr auto;align-items:end;gap:34px;pointer-events:none}
+.work-meta h3{font-size:clamp(30px,4.2vw,58px);letter-spacing:-.045em;line-height:1.06;margin:0 0 8px;color:#fff}
+.work-channel{font-size:16px;font-weight:700;color:#fff;margin:0}
+.work-side{text-align:right;pointer-events:auto}
+.work-role{font-size:15px;font-weight:650;color:#fff;margin-bottom:14px}
+.work-link{display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid var(--orange);padding:6px 0 5px;font-size:14px;font-weight:850;color:#fff;transition:color .2s}
+.work-link:hover,.work-link:focus-visible{color:var(--orange);outline:none}
+.work-dots{display:flex;gap:8px;margin-top:18px}
+.work-dots button{width:36px;height:3px;border:0;padding:0;background:rgba(247,241,231,.28);cursor:pointer}
+.work-dots button.active{background:var(--orange)}
+.work-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+.work-slot{min-height:74px;border:1px solid rgba(247,241,231,.14);display:flex;align-items:center;justify-content:center;padding:10px;color:var(--paper);font-size:12px;font-weight:520;letter-spacing:.02em;background:rgba(255,255,255,.015)}
+
+/* Writers: editorial portrait wall, not an org chart */
+#writers{padding-top:134px}
+.writers-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:end;margin-bottom:66px}
+.writers-hero .section-title{font-size:clamp(48px,6.8vw,96px);text-transform:none;max-width:900px}
+.writers-quote{font-size:clamp(17px,1.55vw,22px);font-weight:560;line-height:1.62;color:var(--paper);padding-bottom:8px;max-width:480px}
+.writer-wall{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;align-items:stretch}
+.writer-card{appearance:none;border:0;background:none;padding:0;text-align:left;cursor:pointer;min-width:0;perspective:1100px;aspect-ratio:3/4;position:relative}
+.writer-card-inner{display:block;position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.16,1,.3,1);will-change:transform}
+.writer-card:hover .writer-card-inner,.writer-card:focus-visible .writer-card-inner,.writer-card.active .writer-card-inner{transform:rotateY(180deg)}
+.writer-face{display:block;position:absolute;inset:0;overflow:hidden;border:1px solid rgba(247,241,231,.18);background:#101010;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 20px 42px rgba(0,0,0,.18)}
+.writer-front img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .38s ease,filter .28s ease}
+.writer-front::after{content:"";position:absolute;inset:auto 0 0;height:48%;background:linear-gradient(transparent,rgba(0,0,0,.9));pointer-events:none}
+.writer-back{transform:rotateY(180deg);background:#0d0d0d;border-color:var(--orange);display:flex;flex-direction:column;justify-content:flex-end;padding:16px;box-shadow:inset 0 0 0 1px rgba(255,100,22,.45)}
+.writer-back::before{content:"";position:absolute;width:130px;height:130px;right:-45px;top:-45px;border-radius:50%;background:radial-gradient(circle,rgba(255,100,22,.42),transparent 68%)}
+.writer-name{position:absolute;z-index:2;left:12px;right:12px;bottom:12px;color:#fff;font-size:clamp(16px,1.35vw,21px);font-weight:900;letter-spacing:-.035em;white-space:nowrap;line-height:1.1}
+.writer-back-name{font-size:clamp(19px,1.55vw,24px);font-weight:900;color:#fff;letter-spacing:-.035em;line-height:1.1;position:relative;z-index:1}
+.writer-back-label{margin-top:7px;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--orange);position:relative;z-index:1}
+.writer-card:focus-visible{outline:2px solid var(--orange);outline-offset:5px}
+.writer-detail-panel{margin-top:54px;border-top:2px solid var(--orange);border-bottom:1px solid var(--line);padding:34px 0 38px;display:grid;grid-template-columns:.7fr 1.3fr;gap:50px}
+.writer-detail-name{font-size:clamp(42px,5vw,72px);font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--paper)}
+.writer-detail-tag{font-size:16px;font-weight:520;margin-top:14px;color:var(--paper)}
+.writer-detail-grid{display:grid;grid-template-columns:120px 1fr;gap:13px 20px;align-content:start;padding-top:4px}
+.writer-detail-grid dt{font-weight:800;color:var(--orange)}
+.writer-detail-grid dd{margin:0;color:var(--paper);font-weight:520}
+
+/* Contact */
+#contact{padding-top:148px;padding-bottom:142px}
+.contact-box{border-top:2px solid var(--orange);padding-top:52px;display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}
+.contact-box h2{font-size:clamp(48px,7.7vw,108px);line-height:1;letter-spacing:-.055em;margin:0;color:var(--paper)}
+.contact-box p{max-width:620px;margin:24px 0 0;font-size:18px;font-weight:520;color:var(--paper)}
+.contact-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.contact-btn{height:62px;min-width:142px;border:1px solid rgba(247,241,231,.34);display:flex;align-items:center;justify-content:center;gap:10px;background:#090909;color:#fff;font-size:13px;font-weight:900;letter-spacing:.1em;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.contact-btn .icon{font-size:20px;line-height:1;color:var(--orange);font-weight:900}
+.contact-btn:hover,.contact-btn:focus-visible{background:var(--orange);border-color:var(--orange);color:#070707;transform:translateY(-2px);outline:none}
+.contact-btn:hover .icon,.contact-btn:focus-visible .icon{color:#070707}
+
+/* Partners/legal: supporting information with equal visual weight. */
+#support{padding:68px 28px 62px;border-top:1px solid rgba(247,241,231,.1);background:rgba(0,0,0,.16)}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:76px}
+.support-block{min-width:0}
+.support-block .eyebrow{margin-bottom:14px;font-weight:650}
+.support-heading{font-size:clamp(27px,2.6vw,38px);font-weight:650;letter-spacing:-.038em;line-height:1.16;color:var(--paper);margin:0;max-width:560px}
+.support-copy,.support-list{font-size:15px;font-weight:430;color:var(--paper)}
+.support-copy{max-width:560px;line-height:1.72;margin:18px 0 0!important}
+.support-list{list-style:none;padding:23px 0 0;margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.support-list li{font-weight:540}
+.support-list a,.support-person{border-bottom:1px solid rgba(247,241,231,.32);transition:color .2s,border-color .2s}
+.support-list a:hover,.support-list a:focus-visible,.support-person:hover,.support-person:focus-visible{color:var(--orange);border-color:var(--orange);outline:none}
+.support-person{display:inline-flex;align-items:baseline;gap:9px;margin-top:25px;padding-bottom:4px;font-size:17px;font-weight:620;color:var(--paper)}
+.support-person span{font-size:13px;font-weight:430;color:var(--paper);opacity:.9}
+footer{padding:26px 28px 34px;text-align:center;font-size:12px;font-weight:500;color:var(--paper);border-top:1px solid rgba(247,241,231,.06)}
+
+@media(max-width:1000px){
+  .menu{display:none}.nav{height:70px}.brand img{width:132px;max-height:34px}
+  .hero-inner{padding:118px 22px 66px}.hero-brand{margin-bottom:62px}.hero-cycle-dots{left:22px}.hero-cycle-label{right:22px}
+  .section{padding:96px 22px 100px}.about-grid{grid-template-columns:1fr;gap:20px}.about-copy{padding-left:0;border-left:0;border-top:1px solid rgba(247,241,231,.18);padding-top:28px}
+  .works-head{display:block}.works-head .side-note{text-align:left;margin-top:18px}.work-stage{min-height:0}
+  .writers-hero{grid-template-columns:1fr;gap:22px}.writers-quote{max-width:640px}.writer-wall{grid-template-columns:repeat(4,1fr)}
+  .writer-detail-panel{grid-template-columns:1fr;gap:28px}.contact-box{grid-template-columns:1fr}.contact-actions{justify-content:flex-start}
+  .support-grid{gap:42px}
+}
+@media(max-width:680px){
+  .hero{min-height:100svh}.hero-inner{min-height:100svh;padding:108px 18px 70px}.hero-wordmark{font-size:clamp(74px,22vw,112px);line-height:.86}.hero-subbrand{margin:0 0 18px;font-size:10px;letter-spacing:.18em}.hero-brand{margin-bottom:52px}.hero-message{min-height:200px}.hero-line>span{font-size:clamp(38px,11.4vw,58px)}.hero-cycle-dots{left:18px;bottom:28px}.hero-cycle-dots i{width:22px}.hero-cycle-dots i.on{width:44px}.hero-cycle-label{display:none}
+  .section{padding-left:18px;padding-right:18px}.about-copy{font-size:20px}
+  .work-slide{aspect-ratio:4/5}.work-meta{padding:110px 20px 22px;display:block}.work-side{text-align:left;margin-top:16px}.work-slots{grid-template-columns:repeat(2,1fr)}
+  .writer-wall{grid-template-columns:repeat(2,1fr);gap:12px}.writer-name{left:10px;right:10px;bottom:10px;font-size:18px}.writer-back{padding:14px}
+  .writer-detail-panel{margin-top:52px}.writer-detail-grid{grid-template-columns:100px 1fr;gap:12px}.contact-actions{width:100%}.contact-btn{flex:1;min-width:0}
+  .support-grid{grid-template-columns:1fr;gap:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}
+  .scroll-light{left:72%;top:24%;opacity:.62}.scroll-trail{display:none}
+  .hero-phrase{opacity:0}.hero-phrase:first-child{opacity:1}.hero-phrase:first-child .hero-line>span{transform:none;opacity:1}.writer-card-inner{transition:none}.writer-card:hover .writer-card-inner,.writer-card:focus-visible .writer-card-inner,.writer-card.active .writer-card-inner{transform:none}.work-track{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="scroll-light" aria-hidden="true"></div><div class="scroll-trail" aria-hidden="true"></div>
+<div class="site">
+<header id="siteHeader">
+  <nav class="nav" aria-label="주요 메뉴">
+    <a class="brand" href="#top" aria-label="PAGE:ON 홈"><img src="assets/pageon-logo-header.png" alt="PAGE:ON 로고" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="brand-fallback" hidden>PAGE:<span class="on">ON</span></span></a>
+    <div class="menu"><a href="#about">ABOUT</a><a href="#works">WORKS</a><a href="#writers">WRITERS</a><a href="#contact">CONTACT US</a></div>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero" id="hero" aria-label="PAGE:ON 브랜드 소개">
+    <div class="hero-inner">
+      <div class="hero-brand" aria-label="PAGE:ON">
+        <div class="hero-subbrand">CREATIVE WRITER CREW</div>
+        <h1 class="hero-wordmark">PAGE<span class="colon">:</span><span class="on">ON</span></h1>
+      </div>
+      <div class="hero-message" aria-live="polite">
+        <article class="hero-phrase is-active" data-phrase="0">
+          <span class="hero-line"><span>이야기를 <b class="hero-accent">열고,</b></span></span>
+          <span class="hero-line"><span>세상을 <b class="hero-accent">켜다.</b></span></span>
+        </article>
+        <article class="hero-phrase" data-phrase="1">
+          <span class="hero-line"><span>이야기는 결국,</span></span>
+          <span class="hero-line"><span><b class="hero-accent">사람</b>에게서 시작됩니다.</span></span>
+        </article>
+        <article class="hero-phrase" data-phrase="2">
+          <span class="hero-line"><span>다음 페이지를</span></span>
+          <span class="hero-line"><span>함께 <b class="hero-accent">열까요?</b></span></span>
+        </article>
+      </div>
+      <div class="hero-cycle-dots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+      <div class="hero-cycle-label" aria-hidden="true"><span id="heroIndex">01</span> / 03</div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="inner about-grid">
+      <div class="about-mark">ABOUT PAGE:ON</div>
+      <div class="about-copy">
+        <h2 class="about-lead">아이디어를 <span class="about-key">장면으로.</span></h2>
+        <p>PAGE:ON은 아이디어가 콘텐츠가 되는 전 과정을 한 흐름으로 함께합니다. 기획과 대본에서 시작해 촬영, 편집, 업로드까지 끊기지 않는 제작 경험을 만드는 크리에이티브 작가 크루입니다.</p>
+        <div class="about-flow" aria-label="PAGE:ON 콘텐츠 제작 흐름">
+          <span class="about-flow-label">한 번에, 끝까지.</span>
+          <span class="about-flow-step">기획</span><span class="about-flow-arrow">→</span>
+          <span class="about-flow-step">대본</span><span class="about-flow-arrow">→</span>
+          <span class="about-flow-step">촬영</span><span class="about-flow-arrow">→</span>
+          <span class="about-flow-step">편집</span><span class="about-flow-arrow">→</span>
+          <span class="about-flow-step">업로드</span>
+          <p class="about-flow-note">아이디어의 시작부터 공개되는 순간까지, 하나의 팀처럼 이어갑니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="works">
+    <div class="inner">
+      <div class="works-head">
+        <div><div class="eyebrow">WORKS</div><h2 class="section-title">우리가 만든 장면들.</h2></div>
+        <p class="side-note">제공된 실제 작업만 표시합니다. 각 작품의 링크에서 영상을 바로 확인할 수 있습니다.</p>
+      </div>
+      <div class="work-stage" id="workStage" aria-live="polite"><div class="work-track" id="workTrack"></div></div>
+      <div class="work-dots" id="workDots" aria-label="작품 선택"></div>
+      <div class="work-slots" aria-label="추가 작품 자리"><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="writers">
+    <div class="inner">
+      <div class="writers-hero">
+        <div><div class="eyebrow">CREATIVE WRITERS</div><h2 class="section-title">장면을 만드는 사람들.</h2></div>
+        <div class="writers-quote">각자의 사진이나 캐릭터가 이 자리를 채웁니다. 카드를 넘기면 작가의 소개와 역할을 확인할 수 있습니다.</div>
+      </div>
+      <div class="writer-wall" id="writerWall" aria-label="PAGE:ON 작가 목록"></div>
+      <aside class="writer-detail-panel" aria-live="polite">
+        <div><div class="writer-detail-name" id="writerName"></div><div class="writer-detail-tag" id="writerTag"></div></div>
+        <dl class="writer-detail-grid"><dt>함께한 작품</dt><dd id="writerWorks"></dd><dt>함께한 역할</dt><dd id="writerScope"></dd></dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="inner contact-box">
+      <div><div class="eyebrow">CONTACT US</div><h2>이야기를<br>건네주세요.</h2><p>기획, 대본, 촬영, 편집, 업로드까지. PAGE:ON 또는 작가와의 협업을 문의해 주세요.</p></div>
+      <div class="contact-actions">
+        <a class="contact-btn" href="mailto:pageon0804@gmail.com?subject=PAGE%3AON%20%ED%98%91%EC%97%85%20%EB%AC%B8%EC%9D%98" aria-label="PAGE:ON 이메일 문의" title="pageon0804@gmail.com"><span class="icon">@</span><span>EMAIL</span></a>
+        <a class="contact-btn" href="tel:+821020733120" aria-label="PAGE:ON 전화 문의" title="010-2073-3120"><span class="icon">↗</span><span>CALL</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="support" aria-label="파트너 및 법률 지원">
+    <div class="inner support-grid">
+      <div class="support-block">
+        <div class="eyebrow">PARTNERS</div>
+        <h3 class="support-heading">제휴 엔터 및 제작사</h3>
+        <p class="support-copy">프로젝트에 맞춰 제작과 섭외 파트너를 유연하게 연결합니다.</p>
+        <ul class="support-list"><li><a href="https://nobent.co.kr/" target="_blank" rel="noopener">NOB 엔터테인먼트 ↗</a></li><li>L2S MEDIA LAB</li><li>제이디비엔터테인먼트</li></ul>
+      </div>
+      <div class="support-block">
+        <div class="eyebrow">LEGAL SUPPORT</div>
+        <h3 class="support-heading">콘텐츠 권리 보호</h3>
+        <p class="support-copy">콘텐츠 기획부터 권리 보호까지 함께합니다. 특허 지원과 법률 검토로 소중한 당신의 페이지를 보호합니다.</p>
+        <a class="support-person" href="https://www.pluspatent.com/bbs/board.php?bo_table=member&amp;wr_id=62" target="_blank" rel="noopener" aria-label="박제범 변호사 프로필 보기">박제범 변호사 <span>변리사 · 콘텐츠 특허 및 법률 지원</span> ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© PAGE:ON · CREATIVE WRITER CREW</footer>
+</div>
+<script src="content.js"></script>
+<script>
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+
+/* Keep the small header logo out of the opening hero. Reveal it once the large PAGE:ON wordmark leaves the viewport. */
+const siteHeader=document.getElementById('siteHeader');
+const updateHeaderState=()=>{
+  const heroBottom=document.getElementById('hero').getBoundingClientRect().bottom;
+  const headerHeight=siteHeader.getBoundingClientRect().height||82;
+  siteHeader.classList.toggle('is-past-hero',heroBottom<=headerHeight+8);
+};
+window.addEventListener('scroll',updateHeaderState,{passive:true});
+window.addEventListener('resize',updateHeaderState);
+updateHeaderState();
+
+/* PAGE:ON stays fixed while the message cycles automatically. */
+const hero=document.getElementById('hero');
+const heroPhrases=[...document.querySelectorAll('.hero-phrase')];
+const heroDots=[...document.querySelectorAll('.hero-cycle-dots i')];
+const heroIndex=document.getElementById('heroIndex');
+let heroStep=0,heroTimer=null,heroVisible=true,heroSwitching=false;
+const heroGlowPositions=[['72%','38%'],['34%','58%'],['78%','64%']];
+function showHeroPhrase(next){
+  if(reduced||heroSwitching||next===heroStep)return;
+  heroSwitching=true;
+  const current=heroPhrases[heroStep],incoming=heroPhrases[next];
+  current.classList.add('is-leaving');
+  current.classList.remove('is-active');
+  incoming.classList.remove('is-leaving');
+  setTimeout(()=>requestAnimationFrame(()=>incoming.classList.add('is-active')),260);
+  heroStep=next;
+  heroDots.forEach((d,i)=>d.classList.toggle('on',i===heroStep));
+  heroIndex.textContent=String(heroStep+1).padStart(2,'0');
+  document.documentElement.style.setProperty('--hero-glow-x',heroGlowPositions[heroStep][0]);
+  document.documentElement.style.setProperty('--hero-glow-y',heroGlowPositions[heroStep][1]);
+  setTimeout(()=>{current.classList.remove('is-leaving');heroSwitching=false},1250);
+}
+function stopHero(){if(heroTimer)clearInterval(heroTimer);heroTimer=null}
+function startHero(){
+  if(reduced||document.hidden||!heroVisible)return;
+  stopHero();heroTimer=setInterval(()=>showHeroPhrase((heroStep+1)%heroPhrases.length),6200);
+}
+new IntersectionObserver(([entry])=>{heroVisible=entry.isIntersecting;heroVisible?startHero():stopHero()},{threshold:.2}).observe(hero);
+document.addEventListener('visibilitychange',()=>document.hidden?stopHero():startHero());
+startHero();
+
+/* A moving orange light travels with the page, with a softer trailing light. */
+let currentX=18,currentY=22,trailX=12,trailY=28,targetX=18,targetY=22,targetTX=12,targetTY=28;
+let lastScroll=window.scrollY,boost=.24;
+function setLightTarget(){
+  if(reduced)return;
+  const max=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+  const p=clamp(window.scrollY/max,0,1);
+  const delta=Math.abs(window.scrollY-lastScroll);lastScroll=window.scrollY;
+  boost=clamp(.22+delta/180,.22,.42);
+  targetX=12+76*(.5+.5*Math.sin(p*Math.PI*3.4-1.05));
+  targetY=14+70*(.5+.5*Math.sin(p*Math.PI*2.35+.2));
+  targetTX=10+72*(.5+.5*Math.sin(p*Math.PI*3.4-1.72));
+  targetTY=18+62*(.5+.5*Math.sin(p*Math.PI*2.35-.28));
+  document.documentElement.style.setProperty('--light-alpha',boost.toFixed(3));
+}
+function lightLoop(){
+  if(!reduced){
+    currentX+=(targetX-currentX)*.075;currentY+=(targetY-currentY)*.075;
+    trailX+=(targetTX-trailX)*.04;trailY+=(targetTY-trailY)*.04;
+    const root=document.documentElement;
+    root.style.setProperty('--light-x',currentX.toFixed(2)+'%');root.style.setProperty('--light-y',currentY.toFixed(2)+'%');
+    root.style.setProperty('--trail-x',trailX.toFixed(2)+'%');root.style.setProperty('--trail-y',trailY.toFixed(2)+'%');
+    boost+=(.22-boost)*.028;root.style.setProperty('--light-alpha',boost.toFixed(3));
+  }
+  requestAnimationFrame(lightLoop);
+}
+function onScroll(){setLightTarget()}
+window.addEventListener('scroll',onScroll,{passive:true});setLightTarget();lightLoop();
+
+/* Actual works only. Add more items to this array when real material arrives. */
+const siteContent=window.PAGEON_CONTENT||{};
+const works=siteContent.works||[];
+const workTrack=document.getElementById('workTrack');const workDots=document.getElementById('workDots');
+works.forEach((w,i)=>{
+  const article=document.createElement('article');article.className='work-slide';
+  const remoteSources=[...(w.remoteThumbs||[]),w.remoteThumb].filter(Boolean);
+  const sources=[w.thumb,...remoteSources,w.fallbackImage].filter(Boolean);
+  article.innerHTML=`<a class="media" href="${w.url}" target="_blank" rel="noopener" aria-label="${w.channel} ${w.title} 영상 보기"><img alt="${w.channel} ${w.title} 유튜브 썸네일" loading="eager" decoding="async"></a><div class="work-meta"><div><h3>${w.title}</h3><p class="work-channel">${w.channel}</p></div><div class="work-side"><div class="work-role">${w.role}</div><a class="work-link" href="${w.url}" target="_blank" rel="noopener">영상 보기 ↗</a></div></div>`;
+  const media=article.querySelector('.media');
+  if(w.fallbackImage) media.style.backgroundImage=`url("${w.fallbackImage}")`;
+  const img=article.querySelector('img');let sourceIndex=0;
+  const trySource=()=>{
+    img.classList.remove('is-loaded');
+    if(sourceIndex<sources.length){img.src=sources[sourceIndex];return}
+    img.removeAttribute('src');img.alt=`${w.channel} ${w.title} 이미지 준비 중`;
+  };
+  img.addEventListener('load',()=>img.classList.add('is-loaded'));
+  img.addEventListener('error',()=>{sourceIndex+=1;trySource()});
+  trySource();
+  workTrack.appendChild(article);
+  const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',`${i+1}번째 작품 보기`);b.addEventListener('click',()=>{goWork(i);restartWorks()});workDots.appendChild(b);
+});
+let workIndex=0,workTimer=null,worksVisible=false;
+function goWork(i){workIndex=(i+works.length)%works.length;workTrack.style.transform=`translateX(${-workIndex*100}%)`;[...workDots.children].forEach((d,n)=>d.classList.toggle('active',n===workIndex))}
+function stopWorks(){if(workTimer)clearInterval(workTimer);workTimer=null}
+function startWorks(){if(reduced||document.hidden||!worksVisible||works.length<2)return;stopWorks();workTimer=setInterval(()=>goWork(workIndex+1),4500)}
+function restartWorks(){stopWorks();startWorks()}
+goWork(0);
+new IntersectionObserver(([entry])=>{worksVisible=entry.isIntersecting;worksVisible?startWorks():stopWorks()},{threshold:.35}).observe(document.getElementById('works'));
+document.addEventListener('visibilitychange',()=>document.hidden?stopWorks():startWorks());
+
+/* Portrait/character images can be dropped in by changing `image` only. */
+const placeholder=(name)=>`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><rect width="600" height="800" fill="#101010"/><path d="M0 610 L600 210" stroke="#ff6416" stroke-width="3" opacity=".72"/><circle cx="500" cy="120" r="11" fill="#ff6416"/><text x="42" y="690" fill="#fffaf1" font-family="Arial,sans-serif" font-weight="700" font-size="25">PHOTO / CHARACTER</text><text x="42" y="733" fill="#fffaf1" font-family="Arial,sans-serif" font-weight="700" font-size="20">${name}</text></svg>`)}`;
+const writerNames=['윤경환','김예슬','이지우','이윤재','방주연','김아영','송원석','이승현','황경민','김예지','정재용','김서윤','위나연','이용규'];
+const defaultWriters=writerNames.map((name,index)=>({id:`writer-${index+1}`,name,image:'',tagline:'작가 소개를 준비 중입니다.',works:[],scope:'함께한 역할을 준비 중입니다.'}));
+const writers=(siteContent.writers&&siteContent.writers.length?siteContent.writers:defaultWriters);
+const writerMap=new Map(writers.map(w=>[w.id,w]));
+const wall=document.getElementById('writerWall');
+writers.forEach((w)=>{
+  const b=document.createElement('button');
+  b.type='button';b.className='writer-card';b.dataset.writerId=w.id;b.setAttribute('aria-label',`${w.name} 프로필 보기`);b.setAttribute('aria-pressed','false');
+  const initialImage=w.image||placeholder(w.name);
+  b.innerHTML=`<span class="writer-card-inner"><span class="writer-face writer-front"><img src="${initialImage}" alt="${w.name} 프로필 이미지" loading="lazy" decoding="async"><strong class="writer-name">${w.name}</strong></span><span class="writer-face writer-back"><strong class="writer-back-name">${w.name}</strong><span class="writer-back-label">PROFILE / PORTFOLIO</span></span></span>`;
+  const img=b.querySelector('img');let usedFallback=!w.image;
+  img.addEventListener('error',()=>{if(!usedFallback){usedFallback=true;img.src=placeholder(w.name);img.alt=`${w.name} 프로필 이미지 자리`} });
+  b.addEventListener('click',()=>selectWriter(w.id));
+  wall.appendChild(b);
+});
+function selectWriter(id){
+  const w=writerMap.get(id)||writers[0];
+  document.getElementById('writerName').textContent=w.name;
+  document.getElementById('writerTag').textContent=w.tagline;
+  document.getElementById('writerWorks').textContent=w.works.length?w.works.join(' · '):'작업 기록 준비 중';
+  document.getElementById('writerScope').textContent=w.scope;
+  [...wall.children].forEach((el)=>{const active=el.dataset.writerId===w.id;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active?'true':'false')});
+}
+selectWriter(writers[0].id);
+</script>
+</body>
+</html>
