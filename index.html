@@ -97,6 +97,7 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .inner{width:min(100%,var(--max));margin:auto}
 .eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:18px}
 .section-title{font-size:clamp(42px,6.2vw,88px);font-weight:900;line-height:1.02;letter-spacing:-.052em;margin:0;color:var(--paper)}
+.works-title-accent{color:var(--orange)}
 .section-intro{font-size:clamp(18px,1.75vw,24px);font-weight:520;line-height:1.65;color:var(--paper);max-width:760px;margin:28px 0 0}
 
 /* About is intentionally compact so it does not repeat the hero. */
@@ -117,13 +118,14 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 
 /* Works */
 #works{padding-top:96px;padding-bottom:104px}
-.works-head{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:0}
+.works-head{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:54px}
 .work-groups{display:grid;gap:52px}
 .work-group{min-width:0}
 .work-group-head{margin-bottom:18px}
 .work-group-title{margin:0;font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-.035em;color:var(--paper)}
 .work-viewport{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-inline:contain;padding:0 1px 10px;cursor:grab}
 .work-viewport::-webkit-scrollbar{display:none}
+.work-viewport.is-auto-moving{scroll-snap-type:none}
 .work-viewport.is-dragging{cursor:grabbing;user-select:none;scroll-snap-type:none}
 .work-track{display:flex;gap:18px}
 .work-slide{flex:0 0 31%;min-width:0;overflow:hidden;background:#0a0a0a;border:1px solid var(--line);scroll-snap-align:start;transition:opacity .38s ease,transform .42s cubic-bezier(.16,1,.3,1),border-color .25s ease,box-shadow .25s ease}
@@ -175,9 +177,12 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .contact-box{border-top:0;padding-top:0;display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}
 .contact-box h2{font-size:clamp(48px,7.7vw,108px);line-height:1;letter-spacing:-.055em;margin:0;color:var(--paper)}
 .contact-box p{max-width:620px;margin:24px 0 0;font-size:18px;font-weight:520;color:var(--paper)}
-.contact-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
-.contact-btn{height:62px;min-width:142px;border:1px solid rgba(247,241,231,.34);display:flex;align-items:center;justify-content:center;gap:10px;background:#090909;color:#fff;font-size:13px;font-weight:900;letter-spacing:.1em;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.contact-actions{display:grid;grid-template-columns:repeat(2,minmax(190px,1fr));gap:12px;justify-content:flex-end}
+.contact-btn{height:72px;min-width:190px;padding:0 20px;border:1px solid rgba(247,241,231,.34);display:flex;align-items:center;justify-content:flex-start;gap:13px;background:#090909;color:#fff;font-size:13px;font-weight:900;letter-spacing:.04em;transition:background .2s,border-color .2s,color .2s,transform .2s}
 .contact-btn .icon{font-size:20px;line-height:1;color:var(--orange);font-weight:900}
+.contact-btn-text{display:grid;gap:3px;text-align:left;line-height:1.15}
+.contact-btn-text b{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.contact-btn-text small{font-size:10px;font-weight:500;letter-spacing:.12em;opacity:.66}
 .contact-btn:hover,.contact-btn:focus-visible{background:var(--orange);border-color:var(--orange);color:#070707;transform:translateY(-2px);outline:none}
 .contact-btn:hover .icon,.contact-btn:focus-visible .icon{color:#070707}
 
@@ -209,9 +214,9 @@ footer{padding:26px 28px 34px;text-align:center;font-size:12px;font-weight:500;c
 @media(max-width:680px){
   .hero{min-height:100svh}.hero-inner{min-height:100svh;padding:108px 18px 70px}.hero-wordmark{font-size:clamp(74px,22vw,112px);line-height:.86}.hero-subbrand{margin:0 0 18px;font-size:10px;letter-spacing:.18em}.hero-brand{margin-bottom:52px}.hero-message{min-height:200px}.hero-line>span{font-size:clamp(38px,11.4vw,58px)}.hero-cycle-dots{left:18px;bottom:28px}.hero-cycle-dots i{width:22px}.hero-cycle-dots i.on{width:44px}.hero-cycle-label{display:none}
   .section{padding-left:18px;padding-right:18px}.about-copy{font-size:20px}
-  #works{padding-top:82px;padding-bottom:88px}.work-groups{gap:42px}.work-group-title{font-size:20px}.work-slide{flex-basis:87%}.work-meta{padding:17px 16px 16px}.work-slots{grid-template-columns:repeat(2,1fr)}
+  #works{padding-top:82px;padding-bottom:88px}.works-head{margin-bottom:40px}.work-groups{gap:42px}.work-group-title{font-size:20px}.work-slide{flex-basis:87%}.work-meta{padding:17px 16px 16px}.work-slots{grid-template-columns:repeat(2,1fr)}
   .writer-wall{grid-template-columns:repeat(2,1fr);gap:12px}.writer-name{left:10px;right:10px;bottom:10px;font-size:18px}.writer-back{padding:14px}
-  .writer-detail-panel{margin-top:52px}.writer-detail-grid{grid-template-columns:100px 1fr;gap:12px}.contact-actions{width:100%}.contact-btn{flex:1;min-width:0}
+  .writer-detail-panel{margin-top:52px}.writer-detail-grid{grid-template-columns:100px 1fr;gap:12px}.contact-actions{width:100%;grid-template-columns:1fr}.contact-btn{min-width:0;width:100%}
   .support-grid{grid-template-columns:1fr;gap:34px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -248,7 +253,7 @@ body{font-size:15px}
 .support-list a,.support-person{display:inline-block;padding-bottom:3px}
 .support-person{margin-top:20px}
 .support-grid{gap:48px}
-.contact-btn{font-weight:500;height:54px}
+.contact-btn{font-weight:500;height:72px}
 @media(max-width:680px){
   .hero-wordmark{font-size:clamp(64px,19vw,96px)}
   .hero-line>span{font-size:clamp(29px,8.5vw,42px)}
@@ -318,7 +323,7 @@ body{font-size:15px}
   <section class="section" id="works">
     <div class="inner">
       <div class="works-head">
-        <div><div class="eyebrow">WORKS</div><h2 class="section-title">PAGE:ON의 기록들</h2></div>
+        <div><div class="eyebrow">WORKS</div><h2 class="section-title">PAGE<span class="works-title-accent">:ON</span>의 기록들</h2></div>
       </div>
       <div class="work-groups" id="workGroups"></div>
     </div>
@@ -328,7 +333,8 @@ body{font-size:15px}
     <div class="inner contact-box">
       <div><div class="eyebrow">CONTACT US</div><h2>이야기를<br>건네주세요</h2><p>기획, 대본, 촬영, 편집, 업로드까지. PAGE:ON 와의 협업을 문의해 주세요.</p></div>
       <div class="contact-actions">
-        <a class="contact-btn" href="mailto:pageon0804@gmail.com?subject=PAGE%3AON%20%ED%98%91%EC%97%85%20%EB%AC%B8%EC%9D%98" aria-label="PAGE:ON 이메일 문의" title="pageon0804@gmail.com"><span class="icon">@</span><span>EMAIL</span></a>
+        <a class="contact-btn" href="mailto:pageon0804@gmail.com?subject=PAGE%3AON%20협업%20문의&amp;body=안녕하세요%2C%20PAGE%3AON%20협업을%20문의드립니다.%0A%0A프로젝트%2F브랜드%3A%0A문의%20내용%3A%0A희망%20일정%3A%0A연락처%3A" aria-label="PAGE:ON 협업 문의 이메일 작성" title="pageon0804@gmail.com"><span class="icon">@</span><span class="contact-btn-text"><b>협업 문의</b><small>EMAIL</small></span></a>
+        <a class="contact-btn" href="mailto:pageon0804@gmail.com?subject=PAGE%3AON%20크루%20지원&amp;body=안녕하세요%2C%20PAGE%3AON%20크루에%20지원합니다.%0A%0A이름%3A%0A지원%20분야%3A%0A경력%20및%20포트폴리오%20링크%3A%0A연락처%3A" aria-label="PAGE:ON 크루 지원 이메일 작성" title="pageon0804@gmail.com"><span class="icon">@</span><span class="contact-btn-text"><b>PAGE:ON 크루 지원</b><small>APPLY BY EMAIL</small></span></a>
       </div>
     </div>
   </section>
@@ -477,19 +483,32 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
     const visible=Math.max(1,Math.floor((viewport.clientWidth+gap)/step));
     return{step,maxStart:Math.max(0,items.length-visible)};
   };
-  let autoTimer=null,resumeTimer=null;
-  const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);autoTimer=null;resumeTimer=null};
+  let autoTimer=null,resumeTimer=null,animationFrame=null,direction=1;
+  const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');autoTimer=null;resumeTimer=null;animationFrame=null};
+  const animateTo=target=>{
+    cancelAnimationFrame(animationFrame);
+    viewport.classList.add('is-auto-moving');
+    const from=viewport.scrollLeft,distance=target-from,duration=1050,start=performance.now();
+    const frame=now=>{
+      const progress=clamp((now-start)/duration,0,1);
+      const eased=progress<.5?4*progress*progress*progress:1-Math.pow(-2*progress+2,3)/2;
+      viewport.scrollLeft=from+distance*eased;
+      if(progress<1)animationFrame=requestAnimationFrame(frame);else{animationFrame=null;viewport.classList.remove('is-auto-moving')}
+    };
+    animationFrame=requestAnimationFrame(frame);
+  };
   const advance=()=>{
     const{step,maxStart}=getMetrics();
     if(!maxStart)return;
     const current=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
-    const next=current>=maxStart?0:current+1;
-    viewport.scrollTo({left:next*step,behavior:'smooth'});
+    if(current>=maxStart)direction=-1;
+    if(current<=0)direction=1;
+    animateTo(clamp(current+direction,0,maxStart)*step);
   };
-  const startAuto=(delay=4200)=>{
+  const startAuto=(delay=4600)=>{
     stopAuto();
     if(reduced||document.hidden)return;
-    autoTimer=setTimeout(()=>{advance();autoTimer=setInterval(advance,4200)},delay);
+    autoTimer=setTimeout(()=>{advance();autoTimer=setInterval(advance,4600)},delay);
   };
   const resumeAuto=()=>{clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>startAuto(),1800)};
   let dragging=false,dragged=false,startX=0,startScroll=0;
