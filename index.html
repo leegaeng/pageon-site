@@ -118,19 +118,10 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 /* Works */
 #works{padding-top:96px;padding-bottom:104px}
 .works-head{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:0}
-.works-summary{margin:14px 0 42px;color:var(--orange);font-size:12px;font-weight:500;letter-spacing:.14em}
 .work-groups{display:grid;gap:52px}
 .work-group{min-width:0}
-.work-group-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:18px}
+.work-group-head{margin-bottom:18px}
 .work-group-title{margin:0;font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-.035em;color:var(--paper)}
-.work-group-count{margin-left:7px;color:var(--orange);font-size:13px;font-weight:500;vertical-align:middle}
-.work-group-controls{display:flex;align-items:center;gap:10px}
-.work-counter{min-width:48px;font-size:11px;font-weight:500;letter-spacing:.08em;color:rgba(247,241,231,.72);text-align:center}
-.work-progress{position:relative;width:54px;height:2px;overflow:hidden;background:rgba(247,241,231,.18)}
-.work-progress i{position:absolute;inset:0;background:var(--orange);transform:scaleX(.2);transform-origin:left center;transition:transform .28s ease}
-.work-arrow{width:34px;height:34px;padding:0;border:1px solid rgba(247,241,231,.26);border-radius:50%;background:#090909;color:var(--paper);cursor:pointer;transition:color .2s,border-color .2s,background .2s,transform .2s}
-.work-arrow:hover,.work-arrow:focus-visible{color:#050505;background:var(--orange);border-color:var(--orange);outline:none;transform:translateY(-1px)}
-.work-arrow:disabled{opacity:.3;cursor:default;transform:none;background:#090909;color:var(--paper);border-color:rgba(247,241,231,.18)}
 .work-viewport{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-inline:contain;padding:0 1px 10px;cursor:grab}
 .work-viewport::-webkit-scrollbar{display:none}
 .work-viewport.is-dragging{cursor:grabbing;user-select:none;scroll-snap-type:none}
@@ -218,7 +209,7 @@ footer{padding:26px 28px 34px;text-align:center;font-size:12px;font-weight:500;c
 @media(max-width:680px){
   .hero{min-height:100svh}.hero-inner{min-height:100svh;padding:108px 18px 70px}.hero-wordmark{font-size:clamp(74px,22vw,112px);line-height:.86}.hero-subbrand{margin:0 0 18px;font-size:10px;letter-spacing:.18em}.hero-brand{margin-bottom:52px}.hero-message{min-height:200px}.hero-line>span{font-size:clamp(38px,11.4vw,58px)}.hero-cycle-dots{left:18px;bottom:28px}.hero-cycle-dots i{width:22px}.hero-cycle-dots i.on{width:44px}.hero-cycle-label{display:none}
   .section{padding-left:18px;padding-right:18px}.about-copy{font-size:20px}
-  #works{padding-top:82px;padding-bottom:88px}.works-summary{margin-bottom:34px}.work-groups{gap:42px}.work-group-head{align-items:flex-start;flex-direction:column;gap:12px}.work-group-controls{align-self:flex-end}.work-group-title{font-size:20px}.work-slide{flex-basis:87%}.work-meta{padding:17px 16px 16px}.work-slots{grid-template-columns:repeat(2,1fr)}
+  #works{padding-top:82px;padding-bottom:88px}.work-groups{gap:42px}.work-group-title{font-size:20px}.work-slide{flex-basis:87%}.work-meta{padding:17px 16px 16px}.work-slots{grid-template-columns:repeat(2,1fr)}
   .writer-wall{grid-template-columns:repeat(2,1fr);gap:12px}.writer-name{left:10px;right:10px;bottom:10px;font-size:18px}.writer-back{padding:14px}
   .writer-detail-panel{margin-top:52px}.writer-detail-grid{grid-template-columns:100px 1fr;gap:12px}.contact-actions{width:100%}.contact-btn{flex:1;min-width:0}
   .support-grid{grid-template-columns:1fr;gap:34px}
@@ -327,9 +318,8 @@ body{font-size:15px}
   <section class="section" id="works">
     <div class="inner">
       <div class="works-head">
-        <div><div class="eyebrow">WORKS</div><h2 class="section-title">우리가 만든 장면들</h2></div>
+        <div><div class="eyebrow">WORKS</div><h2 class="section-title">PAGE:ON의 기록들</h2></div>
       </div>
-      <p class="works-summary">15 PROJECTS · 3 CATEGORIES</p>
       <div class="work-groups" id="workGroups"></div>
     </div>
   </section>
@@ -339,7 +329,6 @@ body{font-size:15px}
       <div><div class="eyebrow">CONTACT US</div><h2>이야기를<br>건네주세요</h2><p>기획, 대본, 촬영, 편집, 업로드까지. PAGE:ON 와의 협업을 문의해 주세요.</p></div>
       <div class="contact-actions">
         <a class="contact-btn" href="mailto:pageon0804@gmail.com?subject=PAGE%3AON%20%ED%98%91%EC%97%85%20%EB%AC%B8%EC%9D%98" aria-label="PAGE:ON 이메일 문의" title="pageon0804@gmail.com"><span class="icon">@</span><span>EMAIL</span></a>
-        <a class="contact-btn" href="tel:+821020733120" aria-label="PAGE:ON 전화 문의" title="010-2073-3120"><span class="icon">↗</span><span>CALL</span></a>
       </div>
     </div>
   </section>
@@ -356,7 +345,7 @@ body{font-size:15px}
         <div class="eyebrow">LEGAL SUPPORT</div>
         <h3 class="support-heading">콘텐츠 권리 보호</h3>
         <p class="support-copy">특허 지원과 법률 검토로 소중한 당신의 페이지를 보호합니다.</p>
-        <a class="support-person" href="https://www.pluspatent.com/bbs/board.php?bo_table=member&amp;wr_id=62" target="_blank" rel="noopener" aria-label="박제범 변호사 프로필 보기">박제범 변호사 ↗</a>
+        <a class="support-person" href="https://www.pluspatent.com/bbs/board.php?bo_table=member&amp;wr_id=62" target="_blank" rel="noopener" aria-label="박제범 변호사·변리사 프로필 보기">박제범 변호사/변리사 ↗</a>
       </div>
     </div>
   </section>
@@ -470,45 +459,42 @@ function createWorkCard(w,i){
   trySource();
   return article;
 }
-workGroupDefinitions.forEach(group=>{
+workGroupDefinitions.forEach((group,groupIndex)=>{
   const items=works.filter(work=>work.category===group.id);
   if(!items.length)return;
   const section=document.createElement('section');
   section.className='work-group';
   section.setAttribute('aria-labelledby',`work-group-${group.id}`);
-  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.label}<span class="work-group-count">${items.length}</span></h3><div class="work-group-controls"><button class="work-arrow prev" type="button" aria-label="${group.label} 이전 작품">←</button><span class="work-progress" aria-hidden="true"><i></i></span><span class="work-counter" aria-live="polite"></span><button class="work-arrow next" type="button" aria-label="${group.label} 다음 작품">→</button></div></div><div class="work-viewport"><div class="work-track"></div></div>`;
+  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.label}</h3></div><div class="work-viewport" aria-roledescription="자동 슬라이드"><div class="work-track"></div></div>`;
   const track=section.querySelector('.work-track');
   items.forEach(w=>track.appendChild(createWorkCard(w,works.indexOf(w))));
   workGroupsHost.appendChild(section);
   const viewport=section.querySelector('.work-viewport');
-  const prev=section.querySelector('.prev');
-  const next=section.querySelector('.next');
-  const counter=section.querySelector('.work-counter');
-  const progress=section.querySelector('.work-progress i');
-  let ticking=false;
-  const updateGroup=()=>{
+  const getMetrics=()=>{
     const firstCard=track.querySelector('.work-slide');
     const gap=parseFloat(getComputedStyle(track).gap)||18;
     const step=(firstCard?.getBoundingClientRect().width||1)+gap;
-    const start=clamp(Math.round(viewport.scrollLeft/step),0,Math.max(0,items.length-1));
     const visible=Math.max(1,Math.floor((viewport.clientWidth+gap)/step));
-    const end=Math.min(items.length,start+visible);
-    counter.textContent=`${String(start+1).padStart(2,'0')}–${String(end).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}`;
-    progress.style.transform=`scaleX(${end/items.length})`;
-    prev.disabled=viewport.scrollLeft<4;
-    next.disabled=viewport.scrollLeft>=viewport.scrollWidth-viewport.clientWidth-4;
-    ticking=false;
+    return{step,maxStart:Math.max(0,items.length-visible)};
   };
-  const move=direction=>{
-    const card=track.querySelector('.work-slide');
-    const gap=parseFloat(getComputedStyle(track).gap)||18;
-    viewport.scrollBy({left:direction*((card?.getBoundingClientRect().width||viewport.clientWidth)+gap),behavior:reduced?'auto':'smooth'});
+  let autoTimer=null,resumeTimer=null;
+  const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);autoTimer=null;resumeTimer=null};
+  const advance=()=>{
+    const{step,maxStart}=getMetrics();
+    if(!maxStart)return;
+    const current=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
+    const next=current>=maxStart?0:current+1;
+    viewport.scrollTo({left:next*step,behavior:'smooth'});
   };
-  prev.addEventListener('click',()=>move(-1));
-  next.addEventListener('click',()=>move(1));
-  viewport.addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(updateGroup)}},{passive:true});
+  const startAuto=(delay=4200)=>{
+    stopAuto();
+    if(reduced||document.hidden)return;
+    autoTimer=setTimeout(()=>{advance();autoTimer=setInterval(advance,4200)},delay);
+  };
+  const resumeAuto=()=>{clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>startAuto(),1800)};
   let dragging=false,dragged=false,startX=0,startScroll=0;
   viewport.addEventListener('pointerdown',event=>{
+    stopAuto();
     if(event.pointerType!=='mouse'||event.button!==0)return;
     dragging=true;dragged=false;startX=event.clientX;startScroll=viewport.scrollLeft;
     viewport.classList.add('is-dragging');viewport.setPointerCapture(event.pointerId);
@@ -519,16 +505,21 @@ workGroupDefinitions.forEach(group=>{
     viewport.scrollLeft=startScroll-distance;
   });
   const stopDrag=event=>{
-    if(!dragging)return;
+    if(!dragging){resumeAuto();return}
     dragging=false;viewport.classList.remove('is-dragging');
     if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);
-    setTimeout(()=>{dragged=false},0);
+    setTimeout(()=>{dragged=false},0);resumeAuto();
   };
   viewport.addEventListener('pointerup',stopDrag);
   viewport.addEventListener('pointercancel',stopDrag);
   viewport.addEventListener('click',event=>{if(dragged){event.preventDefault();event.stopPropagation()}},true);
-  window.addEventListener('resize',updateGroup);
-  requestAnimationFrame(updateGroup);
+  viewport.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')stopAuto()});
+  viewport.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!dragging)resumeAuto()});
+  viewport.addEventListener('focusin',stopAuto);
+  viewport.addEventListener('focusout',resumeAuto);
+  document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
+  window.addEventListener('resize',()=>{const{step,maxStart}=getMetrics();if(Math.round(viewport.scrollLeft/step)>maxStart)viewport.scrollTo({left:0})});
+  startAuto(1800+groupIndex*700);
 });
 const workCards=[...document.querySelectorAll('.work-slide')];
 if(!reduced&&'IntersectionObserver' in window){
