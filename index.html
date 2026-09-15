@@ -117,14 +117,14 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 
 /* Works */
 .works-head{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:42px}
-.works-head .side-note{max-width:310px;font-size:14px;font-weight:500;color:var(--paper);text-align:right}
+
 .work-stage{position:relative;overflow:hidden;background:#090909;border:1px solid var(--line);min-height:550px}
 .work-track{display:flex;transition:transform .72s cubic-bezier(.22,.7,.2,1);will-change:transform}
 .work-slide{min-width:100%;position:relative;aspect-ratio:16/8.8;overflow:hidden;background:#0a0a0a}
 .work-slide>a.media{position:absolute;inset:0;display:block;z-index:1;background:#0a0a0a center/cover no-repeat}
 .work-slide img{width:100%;height:100%;display:block;object-fit:cover;filter:brightness(.72) saturate(.94);transform:scale(1.002);transition:transform .7s ease,filter .4s ease,opacity .25s ease;opacity:0}.work-slide img.is-loaded{opacity:1}
 .work-slide:hover img{transform:scale(1.022);filter:brightness(.79) saturate(1)}
-.work-meta{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:84px 48px 40px;background:linear-gradient(transparent,rgba(0,0,0,.94));display:grid;grid-template-columns:1fr auto;align-items:end;gap:34px;pointer-events:none}
+.work-meta{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:96px 48px 40px;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.78) 42%,rgba(0,0,0,.97) 100%);display:grid;grid-template-columns:1fr auto;align-items:end;gap:34px;pointer-events:none}
 .work-meta h3{font-size:clamp(30px,4.2vw,58px);letter-spacing:-.045em;line-height:1.06;margin:0 0 8px;color:#fff}
 .work-channel{font-size:16px;font-weight:700;color:#fff;margin:0}
 .work-side{text-align:right;pointer-events:auto}
@@ -164,7 +164,7 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 
 /* Contact */
 #contact{padding-top:148px;padding-bottom:142px}
-.contact-box{border-top:2px solid var(--orange);padding-top:52px;display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}
+.contact-box{border-top:0;padding-top:0;display:grid;grid-template-columns:1fr auto;gap:50px;align-items:end}
 .contact-box h2{font-size:clamp(48px,7.7vw,108px);line-height:1;letter-spacing:-.055em;margin:0;color:var(--paper)}
 .contact-box p{max-width:620px;margin:24px 0 0;font-size:18px;font-weight:520;color:var(--paper)}
 .contact-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
@@ -193,7 +193,7 @@ footer{padding:26px 28px 34px;text-align:center;font-size:12px;font-weight:500;c
   .menu{display:none}.nav{height:70px}.brand img{width:132px;max-height:34px}
   .hero-inner{padding:118px 22px 66px}.hero-brand{margin-bottom:62px}.hero-cycle-dots{left:22px}.hero-cycle-label{right:22px}
   .section{padding:96px 22px 100px}.about-grid{grid-template-columns:1fr;gap:20px}.about-copy{padding-left:0;border-left:0;border-top:1px solid rgba(247,241,231,.18);padding-top:28px}
-  .works-head{display:block}.works-head .side-note{text-align:left;margin-top:18px}.work-stage{min-height:0}
+  .works-head{display:block}.work-stage{min-height:0}
   .writers-hero{grid-template-columns:1fr;gap:22px}.writers-quote{max-width:640px}.writer-wall{grid-template-columns:repeat(4,1fr)}
   .writer-detail-panel{grid-template-columns:1fr;gap:28px}.contact-box{grid-template-columns:1fr}.contact-actions{justify-content:flex-start}
   .support-grid{gap:42px}
@@ -222,9 +222,9 @@ body{font-size:15px}
 .section-intro,.about-copy p,.contact-box p,.writers-quote{font-size:var(--type-body);font-weight:400;line-height:1.7}
 .eyebrow,.about-mark{font-size:11px;font-weight:500;letter-spacing:.14em}
 .about-flow-step{font-size:clamp(15px,1.3vw,18px);font-weight:500;line-height:1.55}
-.about-flow-note,.works-head .side-note{font-size:13px!important;font-weight:400!important}
-.work-meta h3{font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.25}
-.work-channel,.work-role{font-size:14px;font-weight:400;line-height:1.65}
+.about-flow-note{font-size:13px!important;font-weight:400!important}
+.work-meta h3{font-size:clamp(24px,2.6vw,38px);font-weight:700;line-height:1.25;text-shadow:0 2px 18px rgba(0,0,0,.92)}
+.work-channel,.work-role{font-size:14px;font-weight:400;line-height:1.65;text-shadow:0 2px 12px rgba(0,0,0,.9)}
 .work-link{font-size:13px;font-weight:500}
 .writers-hero{grid-template-columns:1fr 1fr;margin-bottom:32px;align-items:start}
 .writers-hero .eyebrow{margin:0}
@@ -251,7 +251,7 @@ body{font-size:15px}
   .support-grid{gap:36px}
 }
 .work-roles{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px;padding:0;margin:0 0 14px;max-width:400px}
-.work-roles li{font-size:12px;font-weight:400;line-height:1.45;padding:6px 11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(10,10,10,.65);color:#fff;white-space:nowrap}
+.work-roles li{font-size:12px;font-weight:500;line-height:1.45;padding:6px 11px;border:1px solid rgba(255,100,22,.88);border-radius:999px;background:rgba(255,100,22,.18);color:var(--orange);box-shadow:0 4px 16px rgba(0,0,0,.28);white-space:nowrap}
 .work-meta>div{min-width:0}.work-meta{grid-template-columns:minmax(0,1fr) minmax(0,400px)}
 @media(max-width:1000px){.work-meta{display:block;padding:70px 24px 24px}.work-side{text-align:left;margin-top:18px}.work-roles{justify-content:flex-start;max-width:none}}
 @media(max-width:680px){.work-meta{padding:80px 18px 20px}.work-roles{gap:6px}.work-roles li{font-size:11px;padding:5px 9px}}
@@ -315,7 +315,7 @@ body{font-size:15px}
     <div class="inner">
       <div class="works-head">
         <div><div class="eyebrow">WORKS</div><h2 class="section-title">우리가 만든 장면들</h2></div>
-        <p class="side-note">제공된 실제 작업만 표시합니다. 각 작품의 링크에서 영상을 바로 확인할 수 있습니다.</p>
+
       </div>
       <div class="work-stage" id="workStage" aria-live="polite"><div class="work-track" id="workTrack"></div></div>
       <div class="work-dots" id="workDots" aria-label="작품 선택"></div>
