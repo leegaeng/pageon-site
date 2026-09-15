@@ -249,6 +249,11 @@ body{font-size:15px}
   .writer-name,.writer-back-name{font-size:16px}
   .support-grid{gap:36px}
 }
+.work-roles{list-style:none;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px;padding:0;margin:0 0 14px;max-width:400px}
+.work-roles li{font-size:12px;font-weight:500;line-height:1.45;padding:6px 11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(10,10,10,.65);color:#fff;white-space:nowrap}
+.work-meta>div{min-width:0}.work-meta{grid-template-columns:minmax(0,1fr) minmax(0,400px)}
+@media(max-width:1000px){.work-meta{display:block;padding:70px 24px 24px}.work-side{text-align:left;margin-top:18px}.work-roles{justify-content:flex-start;max-width:none}}
+@media(max-width:680px){.work-meta{padding:80px 18px 20px}.work-roles{gap:6px}.work-roles li{font-size:11px;padding:5px 9px}}
 </style>
 </head>
 <body>
@@ -257,7 +262,7 @@ body{font-size:15px}
 <header id="siteHeader">
   <nav class="nav" aria-label="주요 메뉴">
     <a class="brand" href="#top" aria-label="PAGE:ON 홈"><img src="assets/pageon-logo-header.png" alt="PAGE:ON 로고" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="brand-fallback" hidden>PAGE:<span class="on">ON</span></span></a>
-    <div class="menu"><a href="#about">ABOUT</a><a href="#works">WORKS</a><a href="#writers">WRITERS</a><a href="#contact">CONTACT US</a></div>
+    <div class="menu"><a href="#about">ABOUT</a><a href="#works">WORKS</a><a href="#contact">CONTACT US</a></div>
   </nav>
 </header>
 <main id="top">
@@ -313,25 +318,10 @@ body{font-size:15px}
       </div>
       <div class="work-stage" id="workStage" aria-live="polite"><div class="work-track" id="workTrack"></div></div>
       <div class="work-dots" id="workDots" aria-label="작품 선택"></div>
-      <div class="work-slots" aria-label="추가 작품 자리"><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div><div class="work-slot">추가 작품 슬롯</div></div>
     </div>
   </section>
 
-  <section class="section" id="writers">
-    <div class="inner">
-      <div class="writers-hero">
-        <div><h2 class="eyebrow">CREATIVE WRITERS</h2></div>
-        <div class="writers-quote">각자의 사진이나 캐릭터가 이 자리를 채웁니다. 카드를 넘기면 작가의 소개와 역할을 확인할 수 있습니다.</div>
-      </div>
-      <div class="writer-wall" id="writerWall" aria-label="PAGE:ON 작가 목록"></div>
-      <aside class="writer-detail-panel" aria-live="polite">
-        <div><div class="writer-detail-name" id="writerName"></div><div class="writer-detail-tag" id="writerTag"></div></div>
-        <dl class="writer-detail-grid"><dt>함께한 작품</dt><dd id="writerWorks"></dd><dt>함께한 역할</dt><dd id="writerScope"></dd></dl>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
+<section class="section" id="contact">
     <div class="inner contact-box">
       <div><div class="eyebrow">CONTACT US</div><h2>이야기를<br>건네주세요.</h2><p>기획, 대본, 촬영, 편집, 업로드까지. PAGE:ON 또는 작가와의 협업을 문의해 주세요.</p></div>
       <div class="contact-actions">
@@ -444,7 +434,7 @@ works.forEach((w,i)=>{
   const article=document.createElement('article');article.className='work-slide';
   const remoteSources=[...(w.remoteThumbs||[]),w.remoteThumb].filter(Boolean);
   const sources=[w.thumb,...remoteSources,w.fallbackImage].filter(Boolean);
-  article.innerHTML=`<a class="media" href="${w.url}" target="_blank" rel="noopener" aria-label="${w.channel} ${w.title} 영상 보기"><img alt="${w.channel} ${w.title} 유튜브 썸네일" loading="eager" decoding="async"></a><div class="work-meta"><div><h3>${w.title}</h3><p class="work-channel">${w.channel}</p></div><div class="work-side"><div class="work-role">${w.role}</div><a class="work-link" href="${w.url}" target="_blank" rel="noopener">영상 보기 ↗</a></div></div>`;
+  article.innerHTML=`<a class="media" href="${w.url}" target="_blank" rel="noopener" aria-label="${w.channel} ${w.title} 영상 보기"><img alt="${w.channel} ${w.title} 유튜브 썸네일" loading="eager" decoding="async"></a><div class="work-meta"><div><h3>${w.title}</h3><p class="work-channel">${w.channel}</p></div><div class="work-side"><ul class="work-roles" aria-label="PAGE:ON 참여 범위">${w.roles.map(role=>`<li>${role}</li>`).join('')}</ul><a class="work-link" href="${w.url}" target="_blank" rel="noopener">영상 보기 ↗</a></div></div>`;
   const media=article.querySelector('.media');
   if(w.fallbackImage) media.style.backgroundImage=`url("${w.fallbackImage}")`;
   const img=article.querySelector('img');let sourceIndex=0;
@@ -468,32 +458,7 @@ goWork(0);
 new IntersectionObserver(([entry])=>{worksVisible=entry.isIntersecting;worksVisible?startWorks():stopWorks()},{threshold:.35}).observe(document.getElementById('works'));
 document.addEventListener('visibilitychange',()=>document.hidden?stopWorks():startWorks());
 
-/* Portrait/character images can be dropped in by changing `image` only. */
-const placeholder=(name)=>`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800"><rect width="600" height="800" fill="#101010"/><path d="M0 610 L600 210" stroke="#ff6416" stroke-width="3" opacity=".72"/><circle cx="500" cy="120" r="11" fill="#ff6416"/><text x="42" y="690" fill="#fffaf1" font-family="Arial,sans-serif" font-weight="700" font-size="25">PHOTO / CHARACTER</text><text x="42" y="733" fill="#fffaf1" font-family="Arial,sans-serif" font-weight="700" font-size="20">${name}</text></svg>`)}`;
-const writerNames=['윤경환','김예슬','이지우','이윤재','방주연','김아영','송원석','이승현','황경민','김예지','정재용','김서윤','위나연','이용규'];
-const defaultWriters=writerNames.map((name,index)=>({id:`writer-${index+1}`,name,image:'',tagline:'작가 소개를 준비 중입니다.',works:[],scope:'함께한 역할을 준비 중입니다.'}));
-const writers=(siteContent.writers&&siteContent.writers.length?siteContent.writers:defaultWriters);
-const writerMap=new Map(writers.map(w=>[w.id,w]));
-const wall=document.getElementById('writerWall');
-writers.forEach((w)=>{
-  const b=document.createElement('button');
-  b.type='button';b.className='writer-card';b.dataset.writerId=w.id;b.setAttribute('aria-label',`${w.name} 프로필 보기`);b.setAttribute('aria-pressed','false');
-  const initialImage=w.image||placeholder(w.name);
-  b.innerHTML=`<span class="writer-card-inner"><span class="writer-face writer-front"><img src="${initialImage}" alt="${w.name} 프로필 이미지" loading="lazy" decoding="async"><strong class="writer-name">${w.name}</strong></span><span class="writer-face writer-back"><strong class="writer-back-name">${w.name}</strong><span class="writer-back-label">PROFILE / PORTFOLIO</span></span></span>`;
-  const img=b.querySelector('img');let usedFallback=!w.image;
-  img.addEventListener('error',()=>{if(!usedFallback){usedFallback=true;img.src=placeholder(w.name);img.alt=`${w.name} 프로필 이미지 자리`} });
-  b.addEventListener('click',()=>selectWriter(w.id));
-  wall.appendChild(b);
-});
-function selectWriter(id){
-  const w=writerMap.get(id)||writers[0];
-  document.getElementById('writerName').textContent=w.name;
-  document.getElementById('writerTag').textContent=w.tagline;
-  document.getElementById('writerWorks').textContent=w.works.length?w.works.join(' · '):'작업 기록 준비 중';
-  document.getElementById('writerScope').textContent=w.scope;
-  [...wall.children].forEach((el)=>{const active=el.dataset.writerId===w.id;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active?'true':'false')});
-}
-selectWriter(writers[0].id);
+
 </script>
 </body>
 </html>
