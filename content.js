@@ -37,6 +37,15 @@ window.PAGEON_CONTENT = {
       thumb: '',
       remoteThumbs: ['https://i.ytimg.com/vi/xp3iCwyI6Pg/maxresdefault.jpg','https://i.ytimg.com/vi/xp3iCwyI6Pg/hqdefault.jpg'],
       fallbackImage: 'assets/works/work-03-fallback.png'
+    },
+    {
+      title: '〈월요라이브〉 시즌6 · 겨울왕국',
+      channel: 'NOL',
+      role: '',
+      url: 'https://www.youtube.com/watch?v=t6Ae255vqS0',
+      thumb: '',
+      remoteThumbs: ['https://i.ytimg.com/vi/t6Ae255vqS0/maxresdefault.jpg','https://i.ytimg.com/vi/t6Ae255vqS0/hqdefault.jpg'],
+      fallbackImage: 'assets/og-preview.png'
     }
   ],
   writers: [
