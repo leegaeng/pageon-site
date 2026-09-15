@@ -513,8 +513,6 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
   viewport.addEventListener('pointerup',stopDrag);
   viewport.addEventListener('pointercancel',stopDrag);
   viewport.addEventListener('click',event=>{if(dragged){event.preventDefault();event.stopPropagation()}},true);
-  viewport.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')stopAuto()});
-  viewport.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'&&!dragging)resumeAuto()});
   viewport.addEventListener('focusin',stopAuto);
   viewport.addEventListener('focusout',resumeAuto);
   document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
