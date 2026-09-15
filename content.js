@@ -1,10 +1,10 @@
-/* PAGE:ON ?묓뭹쨌?곸긽쨌李몄뿬 踰붿쐞 ?몄쭛 */
+/* PAGE:ON 작품·영상·참여 범위 편집 */
 window.PAGEON_CONTENT = {
   "works": [
     {
-      "title": "?덈갈臾듭옄???쒕━利?,
+      "title": "〈밥묵자〉 시리즈",
       "category": "channel",
-      "channel": "瑗곕???,
+      "channel": "꼰대희",
       "url": "https://www.youtube.com/watch?v=HXhWODlAxRw",
       "thumb": "",
       "remoteThumbs": [
@@ -13,15 +13,15 @@ window.PAGEON_CONTENT = {
       ],
       "fallbackImage": "assets/works/work-01-fallback.png",
       "roles": [
-        "肄섑뀗痢?湲고쉷",
-        "?蹂?,
-        "梨꾨꼸 ?댁쁺"
+        "콘텐츠 기획",
+        "대본",
+        "채널 운영"
       ]
     },
     {
-      "title": "?뉳NGLISH ESCAPE??,
+      "title": "〈ENGLISH ESCAPE〉",
       "category": "channel",
-      "channel": "?쇨컙源以??,
+      "channel": "얼간김준호",
       "url": "https://www.youtube.com/watch?v=N9WV4ub-C_E",
       "thumb": "",
       "remoteThumbs": [
@@ -30,16 +30,16 @@ window.PAGEON_CONTENT = {
       ],
       "fallbackImage": "assets/works/work-02-fallback.png",
       "roles": [
-        "肄섑뀗痢?湲고쉷",
-        "?蹂?,
-        "珥ъ쁺",
-        "?몄쭛"
+        "콘텐츠 기획",
+        "대본",
+        "촬영",
+        "편집"
       ]
     },
     {
-      "title": "?덈━留ㅼ튂???쒕━利?,
+      "title": "〈리매치〉 시리즈",
       "category": "channel",
-      "channel": "留먯솗TV",
+      "channel": "말왕TV",
       "url": "https://www.youtube.com/watch?v=xp3iCwyI6Pg&t=1s",
       "thumb": "",
       "remoteThumbs": [
@@ -48,13 +48,13 @@ window.PAGEON_CONTENT = {
       ],
       "fallbackImage": "assets/works/work-03-fallback.png",
       "roles": [
-        "肄섑뀗痢?湲고쉷",
-        "?蹂?,
-        "珥ъ쁺?꾩옣耳??
+        "콘텐츠 기획",
+        "대본",
+        "촬영현장케어"
       ]
     },
     {
-      "title": "?덉썡?붾씪?대툕???쒖쫵 5, 6",
+      "title": "〈월요라이브〉 시즌 5, 6",
       "category": "channel",
       "channel": "NOL",
       "url": "https://www.youtube.com/watch?v=t6Ae255vqS0",
@@ -65,19 +65,19 @@ window.PAGEON_CONTENT = {
       ],
       "fallbackImage": "assets/og-preview.png",
       "roles": [
-        "肄섑뀗痢?湲고쉷",
-        "?蹂?,
-        "珥ъ쁺?꾩옣耳??
+        "콘텐츠 기획",
+        "대본",
+        "촬영현장케어"
       ]
     },
     {
-      "title": "?덈?誘몃??앫?쨌 ?붽린?? 濡?뜲二쇰쪟",
+      "title": "〈미미미생〉 · 요기요, 롯데주류",
       "category": "branded",
-      "channel": "誘몃?誘몃늻",
+      "channel": "미미미누",
       "roles": [
-        "肄섑뀗痢?湲고쉷",
-        "?蹂?,
-        "珥ъ쁺?꾩옣耳??
+        "콘텐츠 기획",
+        "대본",
+        "촬영현장케어"
       ],
       "url": "https://www.youtube.com/watch?v=RhqOpTjo_FI",
       "thumb": "",
@@ -88,123 +88,122 @@ window.PAGEON_CONTENT = {
       "fallbackImage": "assets/og-preview.png"
     },
     {
-      "title": "?덈??곌뎅?쒖퐫誘몃뵒?섏뒪?곕쾶??,
+      "title": "〈부산국제코미디페스티벌〉",
       "category": "event",
-      "channel": "硫붿씤?묎?",
+      "channel": "메인작가",
       "url": "https://www.youtube.com/watch?v=9c5NxC5R1qk",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/9c5NxC5R1qk/maxresdefault.jpg",
         "https://i.ytimg.com/vi/9c5NxC5R1qk/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["媛쑣룻룓留됱떇 ?蹂?, "異쒖뿰吏?耳??, "怨듭뿰 ?댁쁺"]
+      "roles": ["개·폐막식 대본", "출연진 케어", "공연 운영"]
     },
     {
-      "title": "?덉씠遊됱썝 40二쇰뀈 ?붾꼫?쇈?,
+      "title": "〈이봉원 40주년 디너쇼〉",
       "category": "event",
-      "channel": "硫붿씤?묎?",
+      "channel": "메인작가",
       "url": "",
       "thumb": "assets/works/lee-bong-won-40th-dinner-show.png",
       "fallbackImage": "assets/works/lee-bong-won-40th-dinner-show.png",
       "fit": "contain",
-      "roles": ["怨듭뿰 湲고쉷", "?蹂?, "?꾩옣耳??]
+      "roles": ["공연 기획", "대본", "현장케어"]
     },
     {
-      "title": "?덈쭩以묒솗?꾠?,
+      "title": "〈망중왕전〉",
       "category": "branded",
-      "channel": "?쇱꽦?앸챸 釉뚮옖?붾뱶 肄섑뀗痢?,
+      "channel": "삼성생명 브랜디드 콘텐츠",
       "url": "https://www.youtube.com/watch?v=EutRVDe1fLM",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/EutRVDe1fLM/maxresdefault.jpg",
         "https://i.ytimg.com/vi/EutRVDe1fLM/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺?꾩옣耳??]
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
     },
     {
-      "title": "?덉＜?앹씤諛붾뵒??,
+      "title": "〈주식인바디〉",
       "category": "branded",
-      "channel": "NH?ъ옄利앷텒 釉뚮옖?붾뱶 肄섑뀗痢?,
+      "channel": "NH투자증권 브랜디드 콘텐츠",
       "url": "https://www.youtube.com/watch?v=JiW3UDcv9Mg",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/JiW3UDcv9Mg/maxresdefault.jpg",
         "https://i.ytimg.com/vi/JiW3UDcv9Mg/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺?꾩옣耳??]
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
     },
     {
-      "title": "?덈쭚??釉뚯씠濡쒓렇??,
+      "title": "〈말왕 브이로그〉",
       "category": "branded",
-      "channel": "?μ쫰 ?댁뼱??釉뚮옖?붾뱶 肄섑뀗痢?,
+      "channel": "샥즈 이어폰 브랜디드 콘텐츠",
       "url": "https://www.youtube.com/watch?v=r1Sg9BW2NZg&t=87s",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/r1Sg9BW2NZg/maxresdefault.jpg",
         "https://i.ytimg.com/vi/r1Sg9BW2NZg/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺?꾩옣耳??]
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
     },
     {
-      "title": "?뉹M?뚯꽌釉붵?,
+      "title": "〈IM파서블〉",
       "category": "branded",
-      "channel": "?援ъ???釉뚮옖?붾뱶 肄섑뀗痢?,
+      "channel": "대구은행 브랜디드 콘텐츠",
       "url": "https://www.youtube.com/watch?v=aTFvhFukYRw",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/aTFvhFukYRw/maxresdefault.jpg",
         "https://i.ytimg.com/vi/aTFvhFukYRw/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺?꾩옣耳??]
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
     },
     {
-      "title": "?덉씤?ъ쟻?쒖젏??,
+      "title": "〈인사적시점〉",
       "category": "branded",
-      "channel": "?먯씠移섎떣 釉뚮옖?붾뱶 肄섑뀗痢?,
+      "channel": "에이치닷 브랜디드 콘텐츠",
       "url": "https://www.youtube.com/watch?v=QNdp1Dp1bYo&list=PLRgkPJ1mdOAgzgVSTMyZLz4wIyMsE_HLV&index=2",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/QNdp1Dp1bYo/maxresdefault.jpg",
         "https://i.ytimg.com/vi/QNdp1Dp1bYo/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺?꾩옣耳??]
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
     },
     {
-      "title": "?덉땐泥?궓???곴레?됱젙 怨듬Т???띾낫?곸긽??,
+      "title": "〈충청남도 적극행정 공무원 홍보영상〉",
       "category": "event",
-      "channel": "?띾낫?곸긽",
+      "channel": "홍보영상",
       "url": "https://www.youtube.com/watch?v=rT6SoPB43BA",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/rT6SoPB43BA/maxresdefault.jpg",
         "https://i.ytimg.com/vi/rT6SoPB43BA/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?]
+      "roles": ["콘텐츠 기획", "대본"]
     },
     {
-      "title": "?덉븫紐⑤Ⅴ?덉븘??,
+      "title": "〈암모르니아〉",
       "category": "channel",
-      "channel": "湲됱떇寃뚯엫利?留덉씤?щ옒?꾪듃 ?κ린 ?곹솴洹?,
+      "channel": "급식게임즈 마인크래프트 장기 상황극",
       "url": "https://www.youtube.com/watch?v=2WU5wuJ8pa4&list=PLCX5rIDml19I490kUAWbWnznnI6e5PXZ4",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/2WU5wuJ8pa4/maxresdefault.jpg",
         "https://i.ytimg.com/vi/2WU5wuJ8pa4/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?]
+      "roles": ["콘텐츠 기획", "대본"]
     },
     {
-      "title": "?덇낏?쒕쭔 鍮꾨눊湲곌낵??,
+      "title": "〈골드만 비뇨기과〉",
       "category": "branded",
-      "channel": "?쇱툩 ?쒕씪留?,
+      "channel": "쇼츠 드라마",
       "url": "https://www.youtube.com/watch?v=Ph8uzxBXFCw&t=1s",
       "remoteThumbs": [
         "https://i.ytimg.com/vi/Ph8uzxBXFCw/maxresdefault.jpg",
         "https://i.ytimg.com/vi/Ph8uzxBXFCw/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
-      "roles": ["肄섑뀗痢?湲고쉷", "?蹂?, "珥ъ쁺", "?몄쭛"]
+      "roles": ["콘텐츠 기획", "대본", "촬영", "편집"]
     }
   ]
 };
-
