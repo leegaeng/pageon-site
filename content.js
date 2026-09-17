@@ -5,15 +5,14 @@ window.PAGEON_CONTENT = {
       "title": "〈뉴민상〉",
       "category": "current",
       "channel": "NEW MINSANG",
-      "url": "https://www.youtube.com/@newminsang/videos",
+      "url": "https://www.youtube.com/watch?v=pDL_JOr_Dzo&t=4s",
       "thumb": "",
       "remoteThumbs": [
-        "https://i.ytimg.com/vi/-YGLz321a5A/maxresdefault.jpg",
-        "https://i.ytimg.com/vi/-YGLz321a5A/hqdefault.jpg"
+        "https://i.ytimg.com/vi/pDL_JOr_Dzo/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/pDL_JOr_Dzo/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
       "roles": [
-        "현재 제작 중",
         "채널 운영"
       ]
     },
@@ -21,15 +20,14 @@ window.PAGEON_CONTENT = {
       "title": "〈임정희〉",
       "category": "current",
       "channel": "임정희 공식 채널",
-      "url": "https://www.youtube.com/@im-limjeonghee",
+      "url": "https://www.youtube.com/watch?v=1pfCxltA57w&t=1334s",
       "thumb": "",
       "remoteThumbs": [
-        "https://i.ytimg.com/vi/rxfjBw6BZSw/maxresdefault.jpg",
-        "https://i.ytimg.com/vi/rxfjBw6BZSw/hqdefault.jpg"
+        "https://i.ytimg.com/vi/1pfCxltA57w/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/1pfCxltA57w/hqdefault.jpg"
       ],
       "fallbackImage": "assets/og-preview.png",
       "roles": [
-        "현재 제작 중",
         "채널 운영"
       ]
     },
