@@ -123,6 +123,7 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .work-group{min-width:0}
 .work-group-head{margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .work-group-title{margin:0;font-size:clamp(20px,2vw,28px);font-weight:600;letter-spacing:-.035em;color:var(--paper)}
+.work-navs{display:flex;align-items:center;gap:4px}
 .work-carousel{position:relative}
 .work-viewport{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-behavior:auto;scrollbar-width:none;overscroll-behavior-inline:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom;padding:0 1px 10px;cursor:grab}
 .work-viewport::-webkit-scrollbar{display:none}
@@ -133,12 +134,9 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .work-group.is-featured{padding:24px;border:1px solid rgba(255,100,22,.38);background:linear-gradient(135deg,rgba(255,100,22,.09),rgba(255,255,255,.015) 48%,rgba(255,100,22,.025));box-shadow:inset 3px 0 0 var(--orange)}
 .work-group.is-featured .work-group-title{color:#fff;letter-spacing:.04em}
 .work-group.is-featured .work-slide{flex-basis:calc(50% - 9px);border-color:rgba(255,100,22,.4)}
-.work-nav{position:absolute;z-index:4;top:calc(50% - 18px);width:36px;height:36px;border:1px solid rgba(247,241,231,.22);border-radius:50%;display:grid;place-items:center;background:rgba(8,8,8,.48);color:rgba(255,255,255,.8);font-size:19px;font-weight:300;line-height:1;cursor:pointer;opacity:.58;backdrop-filter:blur(7px);box-shadow:0 5px 18px rgba(0,0,0,.18);transition:background .2s,border-color .2s,color .2s,transform .2s,opacity .2s}
-.work-nav.prev{left:10px}.work-nav.next{right:10px}
-.work-carousel:hover .work-nav,.work-nav:focus-visible{opacity:.9}
-.work-nav:hover,.work-nav:focus-visible{background:rgba(247,241,231,.12);border-color:rgba(247,241,231,.5);color:#fff;transform:scale(1.04);outline:none}
-.work-nav:disabled{opacity:.16;cursor:default;transform:none}
-.work-carousel:not(.is-scrollable) .work-nav{display:none}
+.work-nav{width:32px;height:32px;border:1px solid rgba(247,241,231,.13);display:grid;place-items:center;background:transparent;color:rgba(247,241,231,.52);font-size:18px;font-weight:300;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,color .2s,opacity .2s}
+.work-nav:hover,.work-nav:focus-visible{background:rgba(247,241,231,.055);border-color:rgba(255,100,22,.45);color:var(--orange);outline:none}
+.work-group:not(.is-scrollable) .work-navs{display:none}
 .work-slide.is-reveal-ready{opacity:0;transform:translateY(18px)}
 .work-slide.is-reveal-ready.is-visible{opacity:1;transform:none;transition-delay:var(--reveal-delay,0ms)}
 .work-slide.is-visible:hover{transform:translateY(-5px);border-color:rgba(255,100,22,.58);box-shadow:0 18px 38px rgba(0,0,0,.34);transition-delay:0ms}
@@ -151,8 +149,6 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .work-meta{display:flex;flex:1;flex-direction:column;padding:18px 18px 17px;background:#0a0a0a}
 .work-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:14px}
 .work-meta h3{font-size:clamp(30px,4.2vw,58px);letter-spacing:-.045em;line-height:1.06;margin:0 0 8px;color:#fff}
-.work-title-link{color:inherit}
-.work-title-link:hover,.work-title-link:focus-visible{color:var(--orange);outline:none}
 .work-channel{font-size:16px;font-weight:700;color:#fff;margin:0}
 .work-play{display:grid;place-items:center;width:36px;height:36px;margin-top:1px;border:1px solid var(--orange);border-radius:50%;background:rgba(255,100,22,.12);color:var(--orange);font-size:12px;line-height:1;transition:background .2s,color .2s,transform .25s ease}
 .work-play:hover,.work-play:focus-visible{background:var(--orange);color:#050505;transform:translateX(2px);outline:none}
@@ -470,9 +466,9 @@ function createWorkCard(w,i){
   const remoteSources=[...(w.remoteThumbs||[]),w.remoteThumb].filter(Boolean);
   const sources=[w.thumb,...remoteSources,w.fallbackImage].filter(Boolean);
   const image=`<img alt="${w.channel} ${w.title} ${w.url?'유튜브 썸네일':'공연 포스터'}" loading="${i<3?'eager':'lazy'}" decoding="async">`;
-  const cardOpen=w.url?`<a class="work-card-link" href="${w.url}" target="_blank" rel="noopener" aria-label="${w.channel} ${w.title} 영상 새 창에서 보기">`:`<div class="work-card-link is-static">`;
-  const cardClose=w.url?'</a>':'</div>';
-  const title=w.url?`<a class="work-title-link" href="${w.url}" target="_blank" rel="noopener">${w.title}</a>`:w.title;
+  const cardOpen='<div class="work-card-link is-static">';
+  const cardClose='</div>';
+  const title=w.title;
   const play=w.url?`<a class="work-play" href="${w.url}" target="_blank" rel="noopener" aria-label="${w.channel} ${w.title} 영상 새 창에서 재생">▶</a>`:'';
   article.innerHTML=`${cardOpen}<div class="media">${image}</div>${cardClose}<div class="work-meta"><div class="work-heading"><div><h3>${title}</h3><p class="work-channel">${w.channel}</p></div>${play}</div><ul class="work-roles" aria-label="PAGE:ON 참여 범위">${w.roles.map(role=>`<li>${role}</li>`).join('')}</ul></div>`;
   const mediaEl=article.querySelector('.media');
@@ -494,9 +490,15 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
   const section=document.createElement('section');
   section.className=`work-group${group.id==='current'?' is-featured':''}`;
   section.setAttribute('aria-labelledby',`work-group-${group.id}`);
-  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.label}</h3></div><div class="work-carousel"><button class="work-nav prev" type="button" aria-label="${group.label} 이전 작품">‹</button><div class="work-viewport" aria-roledescription="자동 슬라이드"><div class="work-track"></div></div><button class="work-nav next" type="button" aria-label="${group.label} 다음 작품">›</button></div>`;
+  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.label}</h3><div class="work-navs" aria-label="${group.label} 슬라이드 이동"><button class="work-nav prev" type="button" aria-label="${group.label} 이전 작품">‹</button><button class="work-nav next" type="button" aria-label="${group.label} 다음 작품">›</button></div></div><div class="work-carousel"><div class="work-viewport" aria-roledescription="순환 자동 슬라이드"><div class="work-track"></div></div></div>`;
   const track=section.querySelector('.work-track');
   items.forEach(w=>track.appendChild(createWorkCard(w,works.indexOf(w))));
+  if(items.length>1)items.forEach(w=>{
+    const clone=createWorkCard(w,works.indexOf(w));
+    clone.classList.add('is-clone');clone.setAttribute('aria-hidden','true');
+    clone.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);
+    track.appendChild(clone);
+  });
   workGroupsHost.appendChild(section);
   const viewport=section.querySelector('.work-viewport');
   const carousel=section.querySelector('.work-carousel');
@@ -506,19 +508,19 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
     const firstCard=track.querySelector('.work-slide');
     const gap=parseFloat(getComputedStyle(track).gap)||18;
     const step=(firstCard?.getBoundingClientRect().width||1)+gap;
-    const visible=Math.max(1,Math.floor((viewport.clientWidth+gap)/step));
-    return{step,maxStart:Math.max(0,items.length-visible)};
+    return{step,loopWidth:step*items.length};
   };
-  let autoTimer=null,resumeTimer=null,animationFrame=null,direction=1;
+  let autoTimer=null,resumeTimer=null,animationFrame=null;
   const updateNav=()=>{
-    const{step,maxStart}=getMetrics();
-    const current=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
-    carousel.classList.toggle('is-scrollable',maxStart>0);
-    prevButton.disabled=current<=0;
-    nextButton.disabled=current>=maxStart;
+    section.classList.toggle('is-scrollable',items.length>1);
+  };
+  const normalizeLoop=()=>{
+    const{loopWidth}=getMetrics();
+    if(!loopWidth)return;
+    if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
   };
   const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');autoTimer=null;resumeTimer=null;animationFrame=null};
-  const animateTo=(target,duration=1350)=>{
+  const animateTo=(target,duration=1350,onComplete=normalizeLoop)=>{
     cancelAnimationFrame(animationFrame);
     viewport.classList.add('is-auto-moving');
     const from=viewport.scrollLeft,distance=target-from,start=performance.now();
@@ -526,21 +528,20 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
       const progress=clamp((now-start)/duration,0,1);
       const eased=progress<.5?4*progress*progress*progress:1-Math.pow(-2*progress+2,3)/2;
       viewport.scrollLeft=from+distance*eased;
-      if(progress<1)animationFrame=requestAnimationFrame(frame);else{animationFrame=null;viewport.classList.remove('is-auto-moving');updateNav()}
+      if(progress<1)animationFrame=requestAnimationFrame(frame);else{animationFrame=null;viewport.classList.remove('is-auto-moving');onComplete();updateNav()}
     };
     animationFrame=requestAnimationFrame(frame);
   };
   const advance=()=>{
-    const{step,maxStart}=getMetrics();
-    if(!maxStart)return;
-    const current=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
-    if(current>=maxStart)direction=-1;
-    if(current<=0)direction=1;
-    animateTo(clamp(current+direction,0,maxStart)*step);
+    if(items.length<2)return;
+    const{step,loopWidth}=getMetrics();
+    if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
+    const current=Math.round(viewport.scrollLeft/step);
+    animateTo((current+1)*step);
   };
   const snapToNearest=()=>{
-    const{step,maxStart}=getMetrics();
-    const nearest=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
+    const{step}=getMetrics();
+    const nearest=Math.round(viewport.scrollLeft/step);
     animateTo(nearest*step,620);
   };
   const startAuto=(delay=5200)=>{
@@ -551,9 +552,11 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
   const resumeAuto=()=>{clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>startAuto(),2200)};
   const moveManually=delta=>{
     stopAuto();
-    const{step,maxStart}=getMetrics();
-    const current=clamp(Math.round(viewport.scrollLeft/step),0,maxStart);
-    animateTo(clamp(current+delta,0,maxStart)*step,720);
+    const{step,loopWidth}=getMetrics();
+    if(delta<0&&viewport.scrollLeft<step*.5)viewport.scrollLeft=loopWidth;
+    else if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
+    const current=Math.round(viewport.scrollLeft/step);
+    animateTo((current+delta)*step,720);
     resumeAuto();
   };
   prevButton.addEventListener('click',()=>moveManually(-1));
@@ -567,7 +570,11 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
   viewport.addEventListener('pointermove',event=>{
     if(!dragging)return;
     const distance=event.clientX-startX;
-    if(Math.abs(distance)>6&&!dragged){dragged=true;viewport.classList.add('is-dragging');viewport.setPointerCapture(event.pointerId)}
+    if(Math.abs(distance)>6&&!dragged){
+      const{step,loopWidth}=getMetrics();
+      if(distance>0&&startScroll<step*.5){viewport.scrollLeft=loopWidth;startScroll=loopWidth}
+      dragged=true;viewport.classList.add('is-dragging');viewport.setPointerCapture(event.pointerId)
+    }
     if(!dragged)return;
     viewport.scrollLeft=startScroll-distance;
   });
@@ -584,11 +591,11 @@ workGroupDefinitions.forEach((group,groupIndex)=>{
   viewport.addEventListener('focusout',resumeAuto);
   document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
   viewport.addEventListener('scroll',updateNav,{passive:true});
-  window.addEventListener('resize',()=>{const{step,maxStart}=getMetrics();if(Math.round(viewport.scrollLeft/step)>maxStart)viewport.scrollTo({left:0});updateNav()});
+  window.addEventListener('resize',()=>{normalizeLoop();updateNav()});
   updateNav();
   startAuto(2200+groupIndex*650);
 });
-const workCards=[...document.querySelectorAll('.work-slide')];
+const workCards=[...document.querySelectorAll('.work-slide:not(.is-clone)')];
 if(!reduced&&'IntersectionObserver' in window){
   const revealWorks=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
