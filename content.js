@@ -2,6 +2,38 @@
 window.PAGEON_CONTENT = {
   "works": [
     {
+      "title": "〈뉴민상〉",
+      "category": "current",
+      "channel": "NEW MINSANG",
+      "url": "https://www.youtube.com/@newminsang/videos",
+      "thumb": "",
+      "remoteThumbs": [
+        "https://i.ytimg.com/vi/-YGLz321a5A/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/-YGLz321a5A/hqdefault.jpg"
+      ],
+      "fallbackImage": "assets/og-preview.png",
+      "roles": [
+        "현재 제작 중",
+        "채널 운영"
+      ]
+    },
+    {
+      "title": "〈임정희〉",
+      "category": "current",
+      "channel": "임정희 공식 채널",
+      "url": "https://www.youtube.com/@im-limjeonghee",
+      "thumb": "",
+      "remoteThumbs": [
+        "https://i.ytimg.com/vi/rxfjBw6BZSw/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/rxfjBw6BZSw/hqdefault.jpg"
+      ],
+      "fallbackImage": "assets/og-preview.png",
+      "roles": [
+        "현재 제작 중",
+        "채널 운영"
+      ]
+    },
+    {
       "title": "〈밥묵자〉 시리즈",
       "category": "channel",
       "channel": "꼰대희",
