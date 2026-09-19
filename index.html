@@ -501,7 +501,7 @@ workGroupDefinitions.forEach(group=>{
   section.dataset.group=group.id;
   section.setAttribute('aria-labelledby',`work-group-${group.id}`);
   const nav=group.id==='current'?'':`<div class="work-navs" aria-label="${group.label} 슬라이드 이동"><button class="work-nav prev" type="button" aria-label="${group.label} 이전 작품">‹</button><button class="work-nav next" type="button" aria-label="${group.label} 다음 작품">›</button></div>`;
-  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.title||group.label}</h3>${nav}</div><div class="work-carousel"><div class="work-viewport" aria-roledescription="${group.id==='current'?'고정 작품 목록':'순환 자동 슬라이드'}"><div class="work-track"></div></div></div>`;
+  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.title||group.label}</h3>${nav}</div><div class="work-carousel"><div class="work-viewport" aria-roledescription="${group.id==='current'?'고정 작품 목록':'수동 순환 슬라이드'}"><div class="work-track"></div></div></div>`;
   const track=section.querySelector('.work-track');
   items.forEach(w=>track.appendChild(createWorkCard(w,works.indexOf(w))));
   workGroupsHost.appendChild(section);
@@ -522,7 +522,7 @@ workGroupDefinitions.forEach(group=>{
     const step=(firstCard?.getBoundingClientRect().width||1)+gap;
     return{step,loopWidth:step*items.length};
   };
-  let autoTimer=null,resumeTimer=null,animationFrame=null;
+  let animationFrame=null;
   const updateNav=()=>{
     section.classList.toggle('is-scrollable',items.length>1);
   };
@@ -531,7 +531,7 @@ workGroupDefinitions.forEach(group=>{
     if(!loopWidth)return;
     if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
   };
-  const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');autoTimer=null;resumeTimer=null;animationFrame=null};
+  const stopMotion=()=>{cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');animationFrame=null};
   const animateTo=(target,duration=1350,onComplete=normalizeLoop)=>{
     cancelAnimationFrame(animationFrame);
     viewport.classList.add('is-auto-moving');
@@ -544,38 +544,24 @@ workGroupDefinitions.forEach(group=>{
     };
     animationFrame=requestAnimationFrame(frame);
   };
-  const advance=()=>{
-    if(items.length<2)return;
-    const{step,loopWidth}=getMetrics();
-    if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
-    const current=Math.round(viewport.scrollLeft/step);
-    animateTo((current+1)*step);
-  };
   const snapToNearest=()=>{
     const{step}=getMetrics();
     const nearest=Math.round(viewport.scrollLeft/step);
     animateTo(nearest*step,620);
   };
-  const startAuto=(delay=5200)=>{
-    stopAuto();
-    if(reduced||document.hidden)return;
-    autoTimer=setTimeout(()=>{advance();autoTimer=setInterval(advance,5200)},delay);
-  };
-  const resumeAuto=()=>{clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>startAuto(),2200)};
   const moveManually=delta=>{
-    stopAuto();
+    stopMotion();
     const{step,loopWidth}=getMetrics();
     if(delta<0&&viewport.scrollLeft<step*.5)viewport.scrollLeft=loopWidth;
     else if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
     const current=Math.round(viewport.scrollLeft/step);
     animateTo((current+delta)*step,720);
-    resumeAuto();
   };
   prevButton.addEventListener('click',()=>moveManually(-1));
   nextButton.addEventListener('click',()=>moveManually(1));
   let dragging=false,dragged=false,startX=0,startScroll=0;
   viewport.addEventListener('pointerdown',event=>{
-    stopAuto();
+    stopMotion();
     if(event.pointerType!=='mouse'||event.button!==0)return;
     dragging=true;dragged=false;startX=event.clientX;startScroll=viewport.scrollLeft;
   });
@@ -591,21 +577,17 @@ workGroupDefinitions.forEach(group=>{
     viewport.scrollLeft=startScroll-distance;
   });
   const stopDrag=event=>{
-    if(!dragging){snapToNearest();resumeAuto();return}
+    if(!dragging){snapToNearest();return}
     dragging=false;viewport.classList.remove('is-dragging');
     if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);
-    snapToNearest();setTimeout(()=>{dragged=false},0);resumeAuto();
+    snapToNearest();setTimeout(()=>{dragged=false},0);
   };
   viewport.addEventListener('pointerup',stopDrag);
   viewport.addEventListener('pointercancel',stopDrag);
   viewport.addEventListener('click',event=>{if(dragged){event.preventDefault();event.stopPropagation()}},true);
-  viewport.addEventListener('focusin',stopAuto);
-  viewport.addEventListener('focusout',resumeAuto);
-  document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
   viewport.addEventListener('scroll',updateNav,{passive:true});
   window.addEventListener('resize',()=>{normalizeLoop();updateNav()});
   updateNav();
-  startAuto(2600);
 });
 const workCards=[...document.querySelectorAll('.work-slide:not(.is-clone)')];
 if(!reduced&&'IntersectionObserver' in window){

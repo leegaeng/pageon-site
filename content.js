@@ -118,6 +118,18 @@ window.PAGEON_CONTENT = {
       "fallbackImage": "assets/og-preview.png"
     },
     {
+      "title": "〈월간셰프〉",
+      "category": "branded",
+      "channel": "롯데웰푸드 브랜디드 콘텐츠",
+      "url": "https://www.youtube.com/watch?v=a0aeN-XrPIE",
+      "remoteThumbs": [
+        "https://i.ytimg.com/vi/a0aeN-XrPIE/maxresdefault.jpg",
+        "https://i.ytimg.com/vi/a0aeN-XrPIE/hqdefault.jpg"
+      ],
+      "fallbackImage": "assets/og-preview.png",
+      "roles": ["콘텐츠 기획", "대본", "촬영현장케어"]
+    },
+    {
       "title": "〈부산국제코미디페스티벌〉",
       "category": "event",
       "channel": "메인작가",
