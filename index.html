@@ -140,6 +140,7 @@ header.is-past-hero .brand{opacity:1;visibility:visible;transform:translateY(0);
 .work-group.is-featured .work-slide{width:auto;min-width:0;border-color:rgba(255,100,22,.4)}
 .work-nav{width:32px;height:32px;border:1px solid rgba(247,241,231,.13);display:grid;place-items:center;background:transparent;color:rgba(247,241,231,.52);font-size:18px;font-weight:300;line-height:1;cursor:pointer;transition:background .2s,border-color .2s,color .2s,opacity .2s}
 .work-nav:hover,.work-nav:focus-visible{background:rgba(247,241,231,.055);border-color:rgba(255,100,22,.45);color:var(--orange);outline:none}
+.work-nav:disabled{opacity:.2;cursor:default;pointer-events:none}
 .work-group:not(.is-scrollable) .work-navs{display:none}
 .work-slide.is-reveal-ready{opacity:0}
 .work-slide.is-reveal-ready.is-visible{opacity:1;transition-delay:0ms}
@@ -501,38 +502,30 @@ workGroupDefinitions.forEach(group=>{
   section.dataset.group=group.id;
   section.setAttribute('aria-labelledby',`work-group-${group.id}`);
   const nav=group.id==='current'?'':`<div class="work-navs" aria-label="${group.label} 슬라이드 이동"><button class="work-nav prev" type="button" aria-label="${group.label} 이전 작품">‹</button><button class="work-nav next" type="button" aria-label="${group.label} 다음 작품">›</button></div>`;
-  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.title||group.label}</h3>${nav}</div><div class="work-carousel"><div class="work-viewport" aria-roledescription="${group.id==='current'?'고정 작품 목록':'수동 순환 슬라이드'}"><div class="work-track"></div></div></div>`;
+  section.innerHTML=`<div class="work-group-head"><h3 class="work-group-title" id="work-group-${group.id}">${group.title||group.label}</h3>${nav}</div><div class="work-carousel"><div class="work-viewport" aria-roledescription="${group.id==='current'?'고정 작품 목록':'자동 진행 슬라이드'}"><div class="work-track"></div></div></div>`;
   const track=section.querySelector('.work-track');
   items.forEach(w=>track.appendChild(createWorkCard(w,works.indexOf(w))));
   workGroupsHost.appendChild(section);
   if(group.id==='current')return;
-  if(items.length>1)items.forEach(w=>{
-    const clone=createWorkCard(w,works.indexOf(w));
-    clone.classList.add('is-clone');clone.setAttribute('aria-hidden','true');
-    clone.querySelectorAll('a,button').forEach(el=>el.tabIndex=-1);
-    track.appendChild(clone);
-  });
   const viewport=section.querySelector('.work-viewport');
-  const carousel=section.querySelector('.work-carousel');
   const prevButton=section.querySelector('.work-nav.prev');
   const nextButton=section.querySelector('.work-nav.next');
   const getMetrics=()=>{
     const firstCard=track.querySelector('.work-slide');
     const gap=parseFloat(getComputedStyle(track).gap)||18;
     const step=(firstCard?.getBoundingClientRect().width||1)+gap;
-    return{step,loopWidth:step*items.length};
+    return{step,maxScroll:Math.max(0,viewport.scrollWidth-viewport.clientWidth)};
   };
-  let animationFrame=null;
+  let autoTimer=null,resumeTimer=null,animationFrame=null;
   const updateNav=()=>{
-    section.classList.toggle('is-scrollable',items.length>1);
-  };
-  const normalizeLoop=()=>{
-    const{loopWidth}=getMetrics();
-    if(!loopWidth)return;
-    if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
+    const{maxScroll}=getMetrics();
+    section.classList.toggle('is-scrollable',maxScroll>2);
+    prevButton.disabled=viewport.scrollLeft<=2;
+    nextButton.disabled=viewport.scrollLeft>=maxScroll-2;
   };
   const stopMotion=()=>{cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');animationFrame=null};
-  const animateTo=(target,duration=1350,onComplete=normalizeLoop)=>{
+  const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);autoTimer=null;resumeTimer=null;stopMotion()};
+  const animateTo=(target,duration=1350,onComplete=()=>{})=>{
     cancelAnimationFrame(animationFrame);
     viewport.classList.add('is-auto-moving');
     const from=viewport.scrollLeft,distance=target-from,start=performance.now();
@@ -545,23 +538,35 @@ workGroupDefinitions.forEach(group=>{
     animationFrame=requestAnimationFrame(frame);
   };
   const snapToNearest=()=>{
-    const{step}=getMetrics();
+    const{step,maxScroll}=getMetrics();
     const nearest=Math.round(viewport.scrollLeft/step);
-    animateTo(nearest*step,620);
+    animateTo(Math.min(maxScroll,nearest*step),620);
   };
+  const startAuto=(delay=5200)=>{
+    clearTimeout(autoTimer);
+    if(reduced||document.hidden)return;
+    const{maxScroll}=getMetrics();
+    if(viewport.scrollLeft>=maxScroll-2)return;
+    autoTimer=setTimeout(()=>{
+      const{step,maxScroll:limit}=getMetrics();
+      const current=Math.round(viewport.scrollLeft/step);
+      const target=Math.min(limit,(current+1)*step);
+      animateTo(target,1350,()=>startAuto());
+    },delay);
+  };
+  const resumeAuto=()=>{clearTimeout(resumeTimer);resumeTimer=setTimeout(()=>startAuto(),2200)};
   const moveManually=delta=>{
-    stopMotion();
-    const{step,loopWidth}=getMetrics();
-    if(delta<0&&viewport.scrollLeft<step*.5)viewport.scrollLeft=loopWidth;
-    else if(viewport.scrollLeft>=loopWidth-1)viewport.scrollLeft-=loopWidth;
+    stopAuto();
+    const{step,maxScroll}=getMetrics();
     const current=Math.round(viewport.scrollLeft/step);
-    animateTo((current+delta)*step,720);
+    animateTo(Math.min(maxScroll,Math.max(0,(current+delta)*step)),720);
+    resumeAuto();
   };
   prevButton.addEventListener('click',()=>moveManually(-1));
   nextButton.addEventListener('click',()=>moveManually(1));
   let dragging=false,dragged=false,startX=0,startScroll=0;
   viewport.addEventListener('pointerdown',event=>{
-    stopMotion();
+    stopAuto();
     if(event.pointerType!=='mouse'||event.button!==0)return;
     dragging=true;dragged=false;startX=event.clientX;startScroll=viewport.scrollLeft;
   });
@@ -569,27 +574,29 @@ workGroupDefinitions.forEach(group=>{
     if(!dragging)return;
     const distance=event.clientX-startX;
     if(Math.abs(distance)>6&&!dragged){
-      const{step,loopWidth}=getMetrics();
-      if(distance>0&&startScroll<step*.5){viewport.scrollLeft=loopWidth;startScroll=loopWidth}
       dragged=true;viewport.classList.add('is-dragging');viewport.setPointerCapture(event.pointerId)
     }
     if(!dragged)return;
     viewport.scrollLeft=startScroll-distance;
   });
   const stopDrag=event=>{
-    if(!dragging){snapToNearest();return}
+    if(!dragging){snapToNearest();resumeAuto();return}
     dragging=false;viewport.classList.remove('is-dragging');
     if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);
-    snapToNearest();setTimeout(()=>{dragged=false},0);
+    snapToNearest();setTimeout(()=>{dragged=false},0);resumeAuto();
   };
   viewport.addEventListener('pointerup',stopDrag);
   viewport.addEventListener('pointercancel',stopDrag);
   viewport.addEventListener('click',event=>{if(dragged){event.preventDefault();event.stopPropagation()}},true);
+  viewport.addEventListener('focusin',stopAuto);
+  viewport.addEventListener('focusout',resumeAuto);
+  document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
   viewport.addEventListener('scroll',updateNav,{passive:true});
-  window.addEventListener('resize',()=>{normalizeLoop();updateNav()});
+  window.addEventListener('resize',updateNav);
   updateNav();
+  startAuto(2600);
 });
-const workCards=[...document.querySelectorAll('.work-slide:not(.is-clone)')];
+const workCards=[...document.querySelectorAll('.work-slide')];
 if(!reduced&&'IntersectionObserver' in window){
   const revealWorks=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
