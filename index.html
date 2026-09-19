@@ -523,10 +523,10 @@ workGroupDefinitions.forEach(group=>{
   let autoTimer=null,resumeTimer=null,animationFrame=null;
   const getPositionIndex=positions=>positions.reduce((best,position,index)=>Math.abs(position-viewport.scrollLeft)<Math.abs(positions[best]-viewport.scrollLeft)?index:best,0);
   const updateNav=()=>{
-    const{maxScroll}=getMetrics();
+    const{positions,maxScroll}=getMetrics();
     section.classList.toggle('is-scrollable',maxScroll>2);
     prevButton.disabled=viewport.scrollLeft<=2;
-    nextButton.disabled=viewport.scrollLeft>=maxScroll-2;
+    nextButton.disabled=positions.length<2;
   };
   const stopMotion=()=>{cancelAnimationFrame(animationFrame);viewport.classList.remove('is-auto-moving');animationFrame=null};
   const stopAuto=()=>{clearTimeout(autoTimer);clearTimeout(resumeTimer);autoTimer=null;resumeTimer=null;stopMotion()};
@@ -549,12 +549,12 @@ workGroupDefinitions.forEach(group=>{
   const startAuto=(delay=group.interval)=>{
     clearTimeout(autoTimer);
     if(reduced||document.hidden)return;
-    const{positions,maxScroll}=getMetrics();
-    if(viewport.scrollLeft>=maxScroll-2)return;
+    const{positions}=getMetrics();
+    if(positions.length<2)return;
     autoTimer=setTimeout(()=>{
       const{positions:targets}=getMetrics();
       const current=getPositionIndex(targets);
-      const target=targets[Math.min(targets.length-1,current+1)];
+      const target=targets[current>=targets.length-1?0:current+1];
       animateTo(target,1100,()=>startAuto());
     },delay);
   };
@@ -563,7 +563,8 @@ workGroupDefinitions.forEach(group=>{
     stopAuto();
     const{positions}=getMetrics();
     const current=getPositionIndex(positions);
-    animateTo(positions[Math.min(positions.length-1,Math.max(0,current+delta))]||0,720);
+    const targetIndex=delta>0&&current>=positions.length-1?0:Math.min(positions.length-1,Math.max(0,current+delta));
+    animateTo(positions[targetIndex]||0,720);
     resumeAuto();
   };
   prevButton.addEventListener('click',()=>moveManually(-1));
