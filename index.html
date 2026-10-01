@@ -492,7 +492,11 @@ function createWorkCard(w,i){
     if(sourceIndex<sources.length){img.src=sources[sourceIndex];return}
     img.removeAttribute('src');img.alt=`${w.channel} ${w.title} 이미지 준비 중`;
   };
-  img.addEventListener('load',()=>img.classList.add('is-loaded'));
+  img.addEventListener('load',()=>{
+    const isYouTubePlaceholder=/\.ytimg\.com\//.test(img.currentSrc)&&img.naturalWidth<=120&&img.naturalHeight<=90;
+    if(isYouTubePlaceholder&&sourceIndex<sources.length-1){sourceIndex+=1;trySource();return}
+    img.classList.add('is-loaded');
+  });
   img.addEventListener('error',()=>{sourceIndex+=1;trySource()});
   trySource();
   return article;
